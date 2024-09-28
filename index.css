@@ -1,3 +1,37 @@
 *{
-    font-family: "Comfortaa"
+    font-family: "Comfortaa";
+    text-align: center;
+}.active{
+    scale: 0.98;
+    opacity: 0.9;
+}#enemyDisplay:active{
+    scale: 0.95;
+    opacity: 0.7;
 }
+#basicBlobDisplayDiv{
+    position: relative;
+    display: inline-block;
+    left: -10vw;
+}#enemyDisplayDiv{
+    position: relative;
+    display: inline-block;
+    right: -10vw;
+}.progress-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 30px;
+    margin-top: 20px;
+    position: relative;
+  }.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #C1E1C1;
+    transition: width 1s ease;
+    border-radius: 5px;
+  }.progressBarText{
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+  }

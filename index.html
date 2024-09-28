@@ -3,8 +3,39 @@
     <head>
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
         <link rel="stylesheet" href="index.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
     <body>
         <h2>jblob blobby</h2>
+        <div id="stats">
+            <p id="coinAMOUNT"></p>
+            <p id="roundNumber"></p>
+        </div>
+
+        <div id="basicBlobDisplayDiv">
+        <img src= "images/basicBlob.png" height="auto" width="90vw" id="basicBlobDisplay" />
+        <div class="progress-container">
+        <div class="progress-bar" id="blobHealthbar">
+            <span class="progressBarText" id="blobHealthText">ee</span>
+        </div>
+    </div>
+        
+        </div>
+
+        <div id="enemyDisplayDiv">
+            
+        <img src= "images/warped.png" height="200vh" width="auto" id="enemyDisplay" />
+        <div class="progress-container">
+            <div class="progress-bar" id="enemyHealthbar">
+                <span class="progressBarText" id="enemyHealthText">ee</span>
+            </div>
+            
+        </div>    
+    </div>
     </body>
+    <script src="js/create.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/onclick.js"></script>
+
+    
 </html>
