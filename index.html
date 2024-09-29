@@ -3,10 +3,33 @@
     <head>
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="positioning.css">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
+"></script>
     </head>
     <body>
-        <h2>jblob blobby</h2>
+     
+        <div id="blobSideBar" class="sidebar">
+            <h1>Squad</h1>
+            <div id="BlobbySidebarDiv">
+                <img height = "auto" width = "100vw" src="images/basicBlob.png"/>
+                <p>Blobby</p>
+            </div>
+            <button id="closeSideBarButton">X</button>
+        </div>
+
+
+        <div id="playscreen">
+            <h2>jblob blobby</h2>
+            <div id="squadSideBar">
+                <button id="openSideBarButton">
+                <img id="openSideBarImg" height = "auto" width = "80vw" src="images/basicBlob.png" />
+                <p>Squad</p>
+            </button>
+            </div>
+            
         <div id="stats">
             <p id="coinAMOUNT"></p>
             <p id="roundNumber"></p>
@@ -23,7 +46,7 @@
         </div>
 
         <div id="enemyDisplayDiv">
-            
+            <p id="enemyStatsDisplay">e</p>
         <img src= "images/warped.png" height="200vh" width="auto" id="enemyDisplay" />
         <div class="progress-container">
             <div class="progress-bar" id="enemyHealthbar">
@@ -31,6 +54,12 @@
             </div>
             
         </div>    
+    </div>
+
+    <button id="toShop">Shop</button>
+</div>
+    <div id="shopDiv">
+        <p>pooo</p>
     </div>
     </body>
     <script src="js/create.js"></script>

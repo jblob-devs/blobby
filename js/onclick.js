@@ -16,8 +16,8 @@ const basicBlobAttackLoop = setInterval(function(){
     basicBlobAttack()
     setTimeout(function(){
         $("#basicBlobDisplay").attr('src', 'images/basicBlob.png')
-    },basicBlob.atkspeed)
-},500+basicBlob.atkspeed)
+    },blobby.atkspeed)
+},500+blobby.atkspeed)
 
 const enemyAttackLoop = setInterval(function(){
     enemyAttack()
@@ -37,8 +37,26 @@ const updateEnemyHealth = setInterval(function(){
 const updateBlobHealth = setInterval(function(){
     var blobhealthbar = document.getElementById("blobHealthbar")
     var blobhealthbarText = document.getElementById("blobHealthText")
-    let percentage = (basicBlob.curhealth/basicBlob.health)* 100
+    let percentage = (blobby.curhealth/blobby.health)* 100
     blobhealthbar.style.width = percentage + '%'
-    blobhealthbarText.textContent = basicBlob.curhealth + " / " + basicBlob.health
+    blobhealthbarText.textContent = blobby.curhealth + " / " + blobby.health
     checkPlayerDeath()
 },100)
+
+
+$("#shopDiv").hide()
+
+$("#toShop").on("click", function(){
+    $("#playscreen").slideUp()
+    $("#shopDiv").slideDown()
+})
+
+$("#openSideBarButton").on("click",function(){
+    $("#blobSideBar").css('width','30vw')
+    $('#playscreen').css('margin-left', '250px');
+})
+
+$("#closeSideBarButton").on("click",function(){
+    $("#blobSideBar").css('width','0')
+    $('#playscreen').css('margin-left', '0');
+})

@@ -1,0 +1,21 @@
+#toShop{
+    position: absolute;
+    bottom: 10vh;
+    right:50vw;
+}#stats{
+    position: absolute;
+    top:4vh;
+    left:5vw;
+}#basicBlobDisplayDiv{
+    position: relative;
+    display: inline-block;
+    left: -5vw;
+}#enemyDisplayDiv{
+    position: relative;
+    display: inline-block;
+    right: -20vw;
+}#squadSideBar{
+    position: absolute;
+    top:20vh;
+    left:3vw;
+}
