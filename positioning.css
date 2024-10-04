@@ -18,4 +18,11 @@
     position: absolute;
     top:20vh;
     left:3vw;
+}#toInventory{
+    position: absolute;
+    top:35vh;
+    left:4vw;
+}#frayedTreasureBagDiv, #patchedTreasureBagDiv{
+    display: inline-block;
+    padding: 4vw;
 }

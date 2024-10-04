@@ -50,4 +50,13 @@
 }#BlobbySidebarDiv:hover{
   background-color:#F5DEB3;
   transition: ease 0.5s;
+}.inventoryTab{
+  border:2px solid;
+  padding:1vw;
+
+}.inventoryTab:hover{
+  border:2px solid;
+  padding:0.5vw;
+  background-color: #efead4;
+  transition: ease 0.5s;
 }

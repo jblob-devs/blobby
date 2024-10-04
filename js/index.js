@@ -1,4 +1,4 @@
-var gold = 0;
+var jelly = 0;
 var round = 1;
 var firstDeath = true;
 var randEnemy = new enemyCreation(
@@ -7,7 +7,27 @@ var randEnemy = new enemyCreation(
     false,
     3000
 )
+var unidentifiedEssence = 0;
+eval("jelly")
 
+var redSalvage = 0;
+var greenSalvage = 0;
+var blueSalvage = 0;
+
+var frayedTreasureBag = 0;
+var patchedTreasureBag = 0;
+var robustTreasureBag = 0;
+
+const displayNames ={
+    jelly: "Jelly",
+    redSalvage: "Red Salvage",
+    greenSalvage: "Blue Salvage",
+    blueSalvage: "Green Salvage",
+    frayedTreasureBag: "Frayed Treasure Bag",
+    patchedTreasureBag: "Patched Treasure Bag",
+    robustTreasureBag: "Robust Treasure Bag",
+    unidentifiedEssence: "Unidentified Essence",
+}
 
 //create sweetalert toast
 var toastTimer  = 3000
@@ -155,13 +175,13 @@ function createNewEnemy(){
 }
 
 function createReward(){
-    gold+=10
+    jelly+=10
     if(randEnemy.boss){
         randomBossReward = createRandomBossReward()
         Toast.fire({
             icon:"info",
             title: `Round ${round} Boss beat!`,
-            text:randomBossReward
+            text: "You got a " + randomBossReward+"! "
         })
     }else if(!tutorialEnemy.beat){
         tutorialEnemy.beat = true
@@ -180,11 +200,17 @@ function createNewBossEnemy(){
 }
 
 function createRandomBossReward(){
-    if(randEnemy.level < 5){
-        let rand = randNum(1, 3)
+        
+    if(randEnemy.level <= 5){
+        let rand = randNum(1, 4)
         if(rand == 1){
-
+            patchedTreasureSack++
+            return "Patched Treasure Sack"
+        }else{
+            frayedTreasureSack++
+             return "Frayed Treasure Sack"
         }
     }
+    
 }
 welcome()

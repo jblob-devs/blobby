@@ -4,8 +4,8 @@ $("#enemyDisplay").on("click",function(){
 
 
 const updateLoop = setInterval(function(){
-//update gold
-$("#coinAMOUNT").html("Gold: " + gold)
+//update jelly
+$("#coinAMOUNT").html("Jelly: " + jelly)
 $("#roundNumber").html("Round: " + round)
 
 },100)
@@ -43,14 +43,24 @@ const updateBlobHealth = setInterval(function(){
     checkPlayerDeath()
 },100)
 
+const updateInventory = setInterval(function(){
+$("#frayedTreasureBagCount").html("Frayed Treasure Bags: " + frayedTreasureBag)
+$("#patchedTreasureBagCount").html("Patched Treasure Bags: " + patchedTreasureBag)
+},100)
 
 $("#shopDiv").hide()
+$("#blobbyCharacterScreen").hide()
+$("#inventoryDiv").hide()
+$("#resourcesDiv").hide()
+$("#openablesDiv").hide()
 
 $("#toShop").on("click", function(){
     $("#playscreen").slideUp()
     $("#shopDiv").slideDown()
 })
 
+
+//Side Bar
 $("#openSideBarButton").on("click",function(){
     $("#blobSideBar").css('width','30vw')
     $('#playscreen').css('margin-left', '250px');
@@ -60,3 +70,43 @@ $("#closeSideBarButton").on("click",function(){
     $("#blobSideBar").css('width','0')
     $('#playscreen').css('margin-left', '0');
 })
+
+//back home
+$(".backHome").on("click",function(){
+    $("#shopDiv").slideUp()
+    $("#blobbyCharacterScreen").slideUp()
+    $("#inventoryDiv").slideUp()
+
+
+    $("#playscreen").slideDown()
+
+})
+
+//open blobby menu
+$("#BlobbySidebarDiv").on("click",function(){
+    $("#playscreen").slideUp()
+
+    $("#blobbyCharacterScreen").slideDown()
+})
+
+//open inventory
+$('#toInventory').on("click",function(){
+    $("#inventoryDiv").slideDown()
+
+    $("#playscreen").slideUp()
+})
+
+
+
+$("#openablesLink").on("click",function(){
+$("#openablesDiv").show()
+
+$("#resourcesDiv").hide()
+})
+
+$("#resourcesLink").on("click",function(){
+    $("#openablesDiv").hide()
+    
+    $("#resourcesDiv").show()
+})
+

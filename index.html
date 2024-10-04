@@ -57,14 +57,55 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
     </div>
 
     <button id="toShop">Shop</button>
+    <button id="toInventory">Inventory</button>
 </div>
+
+
     <div id="shopDiv">
         <p>pooo</p>
+        <button class="backHome">Back</button>
     </div>
+
+    <div id="inventoryDiv">
+        <h2>Inventory</h2>
+        <div id="InventoryNavBar">
+            <a id="openablesLink" class="inventoryTab">Openables</a>
+            <a id="resourcesLink" class="inventoryTab">Resources</a>
+        </div>
+        <br>
+        <br>
+    <div id="openablesDiv">
+        <h3>Treasure Bags</h3>
+        <div id="frayedTreasureBagDiv">
+            <p id="frayedTreasureBagCount"></p> 
+            <button onClick = "openTreasureBags('frayed')">Open all</button>
+        </div>
+        <div id="patchedTreasureBagDiv">
+            <p id="patchedTreasureBagCount"></p>
+             <button  onClick = "openTreasureBags('patched')">Open all</button>
+        </div>
+    </div>
+    <div id="resourcesDiv">
+        <h3>Salvage</h3>
+    </div>
+        <button class="backHome">Back</button>
+    </div>
+    <div id="blobbyCharacterScreen">
+        <img src="images/basicBlob.png" />
+        <h1>Blobby</h1>
+
+        <button class="backHome">Back</button>
+    </div>
+
+
     </body>
+
+
+
     <script src="js/create.js"></script>
     <script src="js/index.js"></script>
     <script src="js/onclick.js"></script>
+    <script src="js/items.js"></script>
 
     
 </html>
