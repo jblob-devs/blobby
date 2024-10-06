@@ -29,6 +29,17 @@ const displayNames ={
     unidentifiedEssence: "Unidentified Essence",
 }
 
+
+let placeHolderCuriosItem = new curiosItem(
+    'Placeholder', 
+    'sigma', 
+    blobby.damage+=2
+)
+
+
+let curiosArr = [placeHolderCuriosItem]
+
+
 //create sweetalert toast
 var toastTimer  = 3000
 const Toast = Swal.mixin({
@@ -204,13 +215,14 @@ function createRandomBossReward(){
     if(randEnemy.level <= 5){
         let rand = randNum(1, 4)
         if(rand == 1){
-            patchedTreasureSack++
+            patchedTreasureBag++
             return "Patched Treasure Sack"
         }else{
-            frayedTreasureSack++
+            frayedTreasureBag++
              return "Frayed Treasure Sack"
         }
     }
     
 }
 welcome()
+createCuriosGrid()

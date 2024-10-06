@@ -48,11 +48,35 @@ $("#frayedTreasureBagCount").html("Frayed Treasure Bags: " + frayedTreasureBag)
 $("#patchedTreasureBagCount").html("Patched Treasure Bags: " + patchedTreasureBag)
 },100)
 
+const updateBlobbyDiv = setInterval(function(){
+    $("#blobbyHPp").html("health: " + blobby.health)
+    $("#blobbyDMGp").html("damage: " + blobby.damage)
+    $("#blobbyATKSPDp").html("attack speed: " + blobby.atkspeed)
+
+    //update curios grid
+    
+    
+},100)
+
+
+function firstTimeCurios(){
+    Swal.fire({
+        icon: "info",
+        title: "Curios",
+        text:"Curios are items that buff and provide special abilites to Blobby and it's team. Curios often interact with each other to become extra-powerful!"
+      }).then((result) => {
+        $("#firstTimeCuriosInfo").hide()
+        $("#editCuriosConfigBtn").show()
+      });
+}
+
 $("#shopDiv").hide()
 $("#blobbyCharacterScreen").hide()
 $("#inventoryDiv").hide()
 $("#resourcesDiv").hide()
 $("#openablesDiv").hide()
+$("#editCuriosConfigBtn").hide()
+
 
 $("#toShop").on("click", function(){
     $("#playscreen").slideUp()
@@ -110,3 +134,29 @@ $("#resourcesLink").on("click",function(){
     $("#resourcesDiv").show()
 })
 
+$("#editCuriosConfigBtn").on("click",function(){
+  if(curiosArr.length == 0){
+    Swal.fire({text:"You have no Curios!"})
+  }
+})
+
+
+function gridItemClick(num,arr,thisitem){
+    
+    Swal.fire({
+        html:"Select a Curios<br>"
+    })
+    if(!arr[num]){
+        let item = placeHolderCuriosItem
+        arr[num] = item;
+       
+        thisitem.text("placeholder")
+    }
+}
+
+function loadCurios(){
+    for(let i =0; i < curiosArr; i++){
+        let curiosItemDiv = document.createElement('div');
+        $("#listOfCurios").append(curiosItemDiv)
+    }
+}

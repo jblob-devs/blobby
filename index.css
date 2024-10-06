@@ -53,10 +53,21 @@
 }.inventoryTab{
   border:2px solid;
   padding:1vw;
-
 }.inventoryTab:hover{
   border:2px solid;
   padding:0.5vw;
   background-color: #efead4;
   transition: ease 0.5s;
+}#curios-grid-container{
+  justify-content: center;
+  display: grid;
+  gap:10px;
+}.curios-grid-item{
+  align-items: center;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  transition: background-color 0.3s;
+}.curios-grid-item:hover{
+  background-color:#F5DEB3 ;
 }
