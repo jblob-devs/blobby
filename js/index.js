@@ -33,7 +33,10 @@ const displayNames ={
 let placeHolderCuriosItem = new curiosItem(
     'Placeholder', 
     'sigma', 
-    blobby.damage+=2
+    {
+        baseDMGBuff: 2,
+        healthPercentageBuff: 10
+    }
 )
 
 

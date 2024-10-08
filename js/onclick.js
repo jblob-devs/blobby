@@ -140,6 +140,14 @@ $("#editCuriosConfigBtn").on("click",function(){
   }
 })
 
+$("#saveCuriosConfig").on("click",function(){
+    applyCuriosConfig(curiosArr)
+})
+
+function applyCuriosConfig(curiosArray){
+    blobby.resetStats()
+    blobby.applyCurios(curiosArray)
+}
 
 function gridItemClick(num,arr,thisitem){
     

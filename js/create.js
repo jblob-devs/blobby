@@ -31,10 +31,40 @@ class enemyCreation{
 
 class basicBlobConstructor{
     constructor(health,damage,atkspeed){
-        this.health=health;
+        //actual stats, changes to this are permanent
+        this.healthSTAT = health
+        this.damageSTAT = damage
+        this.attackspeedSTAT = atkspeed
+        
+
+
+        //stats modified by buffs n stuff
+        this.health=this.healthSTAT;
+        this.damage=this.damageSTAT;
+        this.atkspeed = this.attackspeedSTAT; //milliseconds
+
+
+        //health in game during battle 
         this.curhealth = health;
-        this.damage=damage;
-        this.atkspeed = atkspeed; //milliseconds
+
+        
+    }
+
+    resetStats(){
+        this.health = this.healthSTAT
+        this.damage = this.damageSTAT
+        this.atkspeed = this.attackspeedSTAT
+    }
+
+    applyCurios(curiosApplicationArray){
+        curiosApplicationArray.forEach(curios =>{
+            if(curios.mods.baseDMGBuff) this.damage += curios.mods.baseDMGBuff
+            if(curios.mods.damagePercentageBuff) this.damage += Math.floor(this.damage * curios.mods.damagePercentageBuff/100)
+
+            if(curios.mods.baseHPBuff) this.health += curios.baseHPBuff
+            if(curios.mods.healthPercentageBuff) this.health += Math.floor(this.health * curios.mods.healthPercentageBuff/100)
+        
+            })
     }
 }
 
@@ -45,10 +75,10 @@ var curiosGrid={
 var blobby = new basicBlobConstructor(100,1,1000)
 
 class curiosItem{
-    constructor(name,icon,buffs){
+    constructor(name,icon,mods){
         this.name = name
         this.icon = icon
-        this.buffs = buffs;
+        this.mods = mods;
     }
 }
 
