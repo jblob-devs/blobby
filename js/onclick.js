@@ -76,6 +76,7 @@ $("#inventoryDiv").hide()
 $("#resourcesDiv").hide()
 $("#openablesDiv").hide()
 $("#editCuriosConfigBtn").hide()
+$("#augmentsDiv").hide()
 
 
 $("#toShop").on("click", function(){
@@ -100,6 +101,7 @@ $(".backHome").on("click",function(){
     $("#shopDiv").slideUp()
     $("#blobbyCharacterScreen").slideUp()
     $("#inventoryDiv").slideUp()
+    $("#augmentsDiv").slideUp()
 
 
     $("#playscreen").slideDown()
@@ -132,6 +134,13 @@ $("#resourcesLink").on("click",function(){
     $("#openablesDiv").hide()
     
     $("#resourcesDiv").show()
+})
+
+
+$("#openAugmentsMenu").on("click",function(){
+    $("#playscreen").hide()
+    
+    $("#augmentsDiv").show()
 })
 
 $("#editCuriosConfigBtn").on("click",function(){

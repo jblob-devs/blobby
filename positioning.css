@@ -20,9 +20,13 @@
     left:3vw;
 }#toInventory{
     position: absolute;
-    top:35vh;
+    top:50vh;
     left:4vw;
 }#frayedTreasureBagDiv, #patchedTreasureBagDiv{
     display: inline-block;
     padding: 4vw;
+}#openAugmentsMenu{
+    position: absolute;
+    top:40vh;
+    left:4vw;
 }

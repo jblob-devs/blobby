@@ -45,7 +45,7 @@ function openTreasureBags(type){
 
         10% chance for a second reward
     */
-    if(type == "frayed"){
+    if(type == "frayed" && frayedTreasureBag > 0){
         let rand = randNum(1,10)
         if(rand <= 3){
             let amount = randNum(8,15)
@@ -63,6 +63,7 @@ function openTreasureBags(type){
             let amount = randNum(3,5)
             addRewardArray("unidentifiedEssence", amount)
         }
+        frayedTreasureBag--
     }
 
     let out = sendRewardArray()
