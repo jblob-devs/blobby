@@ -29,4 +29,12 @@
     position: absolute;
     top:40vh;
     left:4vw;
-}
+}.damage-number {
+    position: absolute;
+    font-size: 3vh;
+    color: red;
+    font-weight: bold;
+    pointer-events: none; 
+    animation: float-up 1s forwards;
+  }
+  

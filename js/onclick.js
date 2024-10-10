@@ -1,3 +1,14 @@
+function logMousePosition(event) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  }
+  
+  document.addEventListener("click", function(event) {
+    logMousePosition(event);
+  });
+
+
+
 $("#enemyDisplay").on("click",function(){
     tapEnemy()
 })

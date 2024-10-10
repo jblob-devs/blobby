@@ -1,3 +1,5 @@
+let mouseX;
+let mouseY
 var jelly = 0;
 var round = 1;
 var firstDeath = true;
@@ -17,6 +19,13 @@ var blueSalvage = 0;
 var frayedTreasureBag = 0;
 var patchedTreasureBag = 0;
 var robustTreasureBag = 0;
+
+let playerTap = {
+    damage: 1,
+    damageType: 'physical',
+    critChance: 10,
+    critMultiplier: 1.2
+}
 
 const displayNames ={
     jelly: "Jelly",
@@ -96,9 +105,41 @@ const Toast = Swal.mixin({
   }
 
 function tapEnemy(){
-    randEnemy.curhealth--
+    let dmgDone  =calcPlayerTapDamage()
+    randEnemy.curhealth-= dmgDone
+    generateDamageNumbers(dmgDone)
+    
 }
 
+function generateDamageNumbers(damage){
+    let enemyBounding = document.getElementById("enemyDisplayDiv")
+    const rect = enemyBounding.getBoundingClientRect();
+    const x = mouseX - rect.left;
+    const y = mouseY - rect.top;
+
+    let dmgNum = document.createElement("div")
+    dmgNum.classList.add("damage-number")
+    dmgNum.textContent = damage
+    let randx = randNum(1,50)
+    let randy = randNum(-25,25)
+    dmgNum.style.left = `${x-randy}px`;
+    dmgNum.style.top = `${y-randx}px`;
+    enemyBounding.appendChild(dmgNum)
+    setTimeout(() => {
+        dmgNum.remove();
+      }, 1000);
+}
+
+function calcPlayerTapDamage(){
+    let rand  = randNum(1,100)
+    let dmg;
+    if(rand <= playerTap.critChance){
+        dmg =  Math.ceil(playerTap.damage * playerTap.critMultiplier);
+    }else{
+        dmg = playerTap.damage
+    }
+    return dmg
+}
 function basicBlobAttack(){
     //set image
     var image = document.getElementById("enemyDisplay")

@@ -71,3 +71,14 @@
 }.curios-grid-item:hover{
   background-color:#F5DEB3 ;
 }
+
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
