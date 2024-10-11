@@ -64,8 +64,7 @@ function openTreasureBags(type){
             addRewardArray("unidentifiedEssence", amount)
         }
         frayedTreasureBag--
-    }
-
+        
     let out = sendRewardArray()
     console.log(out)
     Toast.fire({
@@ -73,4 +72,8 @@ function openTreasureBags(type){
         html: out
       });
     clearRewardArray()
+    }else{
+        Toast.fire({text:"You don't have any of this item!"})
+    }
+
 }

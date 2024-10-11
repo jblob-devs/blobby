@@ -82,3 +82,20 @@
     transform: translateY(-50px);
   }
 }
+
+.curios-item-draggable{
+  border: 1px solid;
+  width: max-content;
+  padding:1vw;
+  transition: ease 0.5s;
+}
+.curios-item-draggable:hover{
+  border-radius: 20%;
+  transition: ease 0.5s;
+}.curiosItemDescriptorText{
+  font-size: 1.5vh;
+  transition: ease 2s;
+}.curiosItemDescriptorText:hover{
+  font-size: 2vh;
+  transition: ease 2s;
+}

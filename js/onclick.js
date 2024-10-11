@@ -124,6 +124,7 @@ $("#BlobbySidebarDiv").on("click",function(){
     $("#playscreen").slideUp()
 
     $("#blobbyCharacterScreen").slideDown()
+    loadCurios()
 })
 
 //open inventory
@@ -170,21 +171,47 @@ function applyCuriosConfig(curiosArray){
 }
 
 function gridItemClick(num,arr,thisitem){
-    
-    Swal.fire({
-        html:"Select a Curios<br>"
-    })
-    if(!arr[num]){
-        let item = placeHolderCuriosItem
-        arr[num] = item;
-       
-        thisitem.text("placeholder")
-    }
+   
+        if(!arr[num]){
+            let item = placeHolderCuriosItem
+            arr[num] = item;
+           
+            thisitem.text("placeholder")
+        }
+
 }
 
 function loadCurios(){
-    for(let i =0; i < curiosArr; i++){
-        let curiosItemDiv = document.createElement('div');
+    for(let i =0; i < curiosArr.length; i++){
+
+
+        let displayString = "";
+        displayString += curiosArr[i].name + "<br> <div class='curiosItemDescriptorText'>"
+        console.log(curiosArr[i].mods)
+        for(let j = 0; j < Object.keys(curiosArr[i].mods).length; j++){
+            let modlist = Object.keys(curiosArr[i].mods)
+
+            displayString+= formatCuriosModText(curiosArr[i].mods[modlist[j]])
+        
+        }
+        displayString+="</div>"
+
+
+
+        let curiosItemDiv =$('<div></div>');
+        curiosItemDiv.html(displayString)
+        curiosItemDiv.addClass('curios-item-draggable')
         $("#listOfCurios").append(curiosItemDiv)
     }
+}
+
+function formatCuriosModText(mod){
+    let str =  mod[1] 
+    if(mod[2] == "buff"){
+        str += ": +"
+    }else{
+        str += ": -"
+    }
+    str += mod[0] + mod[3] + "<br>"
+    return str 
 }

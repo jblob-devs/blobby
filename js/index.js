@@ -43,11 +43,15 @@ let placeHolderCuriosItem = new curiosItem(
     'Placeholder', 
     'sigma', 
     {
-        baseDMGBuff: 2,
-        healthPercentageBuff: 10
+        baseDMGBuff: curiosModList(2,"Base Damage", "buff", ""),
+        healthPercentageBuff: curiosModList(2,"Health", "buff", "%")
     }
 )
 
+function curiosModList(num, name, type, extra){
+    let list = [num, name, type, extra]
+    return list;
+}
 
 let curiosArr = [placeHolderCuriosItem]
 
