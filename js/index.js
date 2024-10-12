@@ -44,7 +44,7 @@ let placeHolderCuriosItem = new curiosItem(
     'sigma', 
     {
         baseDMGBuff: curiosModList(2,"Base Damage", "buff", ""),
-        healthPercentageBuff: curiosModList(2,"Health", "buff", "%")
+        healthPercentageBuff: curiosModList(10,"Health", "buff", "%")
     }
 )
 
@@ -52,8 +52,8 @@ function curiosModList(num, name, type, extra){
     let list = [num, name, type, extra]
     return list;
 }
-
-let curiosArr = [placeHolderCuriosItem]
+let UnlockedCuriosList = [placeHolderCuriosItem]
+let curiosArr = []
 
 
 //create sweetalert toast

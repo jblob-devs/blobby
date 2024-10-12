@@ -171,27 +171,20 @@ function applyCuriosConfig(curiosArray){
 }
 
 function gridItemClick(num,arr,thisitem){
-   
-        if(!arr[num]){
-            let item = placeHolderCuriosItem
-            arr[num] = item;
-           
-            thisitem.text("placeholder")
-        }
 
 }
 
 function loadCurios(){
-    for(let i =0; i < curiosArr.length; i++){
+    for(let i =0; i < UnlockedCuriosList.length; i++){
+        
 
+        let displayString = "<div class='curiosItemName'>";
+        displayString += UnlockedCuriosList[i].name + "</div> <br> <div class='curiosItemDescriptorText'>"
+        console.log(UnlockedCuriosList[i].mods)
+        for(let j = 0; j < Object.keys(UnlockedCuriosList[i].mods).length; j++){
+            let modlist = Object.keys(UnlockedCuriosList[i].mods)
 
-        let displayString = "";
-        displayString += curiosArr[i].name + "<br> <div class='curiosItemDescriptorText'>"
-        console.log(curiosArr[i].mods)
-        for(let j = 0; j < Object.keys(curiosArr[i].mods).length; j++){
-            let modlist = Object.keys(curiosArr[i].mods)
-
-            displayString+= formatCuriosModText(curiosArr[i].mods[modlist[j]])
+            displayString+= formatCuriosModText(UnlockedCuriosList[i].mods[modlist[j]])
         
         }
         displayString+="</div>"
@@ -200,10 +193,19 @@ function loadCurios(){
 
         let curiosItemDiv =$('<div></div>');
         curiosItemDiv.html(displayString)
+
+        curiosItemDiv.draggable({
+            helper: "clone",
+            revert: "invalid"
+        })
+
+        
         curiosItemDiv.addClass('curios-item-draggable')
+        
         $("#listOfCurios").append(curiosItemDiv)
     }
 }
+
 
 function formatCuriosModText(mod){
     let str =  mod[1] 
@@ -213,5 +215,5 @@ function formatCuriosModText(mod){
         str += ": -"
     }
     str += mod[0] + mod[3] + "<br>"
-    return str 
+    return str
 }

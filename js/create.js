@@ -58,13 +58,17 @@ class basicBlobConstructor{
 
     applyCurios(curiosApplicationArray){
         curiosApplicationArray.forEach(curios =>{
-            if(curios.mods.baseDMGBuff) this.damage += curios.mods.baseDMGBuff
-            if(curios.mods.damagePercentageBuff) this.damage += Math.floor(this.damage * curios.mods.damagePercentageBuff/100)
-
-            if(curios.mods.baseHPBuff) this.health += curios.baseHPBuff
-            if(curios.mods.healthPercentageBuff) this.health += Math.floor(this.health * curios.mods.healthPercentageBuff/100)
-        
-            })
+            if(curios == null){
+            }else{
+                //[0] gets the number value of the mods 
+                if(curios.mods.baseDMGBuff) this.damage += curios.mods.baseDMGBuff[0]
+                if(curios.mods.damagePercentageBuff) this.damage += Math.floor(this.damage * curios.mods.damagePercentageBuff[0]/100)
+    
+                if(curios.mods.baseHPBuff) this.health += curios.baseHPBuff[0]
+                if(curios.mods.healthPercentageBuff) this.health += Math.floor(this.health * curios.mods.healthPercentageBuff[0]/100)
+            }
+           
+        })
     }
 }
 
@@ -82,6 +86,13 @@ class curiosItem{
     }
 }
 
+let nullItem = new curiosItem(
+    'null', 
+    'no item', 
+    {
+    }
+)
+
 function createCuriosGrid(){
     let grid = $("#curios-grid-container")
     grid.css({
@@ -93,15 +104,41 @@ function createCuriosGrid(){
 
     grid.empty()
     let gridState = Array(totcelnum).fill(null)
+    curiosArr = []
     for(let i =0; i < totcelnum;i++){
         const gridItem = $('<div>lalalala</div>')
         .addClass('curios-grid-item')
         .attr('data-id',i+1)
        
-        grid.append(gridItem)
+  
         gridItem.on('click',function(){
             gridItemClick(i+1,gridState,gridItem)
         })
+       
+        gridItem.droppable({
+            accept: ".curios-item-draggable",
+            hoverClass:'over',
+            drop: function(event, ui){
+                
+                const dropped = ui.helper.html()
+                console.log(dropped)
+                let name = $(ui.helper).find('.curiosItemName').text()
+                
+                for(let i =0; i < UnlockedCuriosList.length; i++){
+                    if(UnlockedCuriosList[i].name == name){
+                        curiosArr[gridItem.data("id")] = UnlockedCuriosList[i]
+                    }
+                }
+                
+                $(this).empty().html(name);
+            }
+        })
+        grid.append(gridItem)
+
+
+        //populate curios array with no item
+    
+        curiosArr[i] = null
     }
 }
 

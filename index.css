@@ -88,13 +88,18 @@
   width: max-content;
   padding:1vw;
   transition: ease 0.5s;
-}
-.curios-item-draggable:hover{
+  position: relative;
+  user-select: none; 
+  background-color: #f3f3f3;
+}.curios-item-draggable:hover{
   border-radius: 20%;
   transition: ease 0.5s;
-}.curiosItemDescriptorText{
+  position: relative;
+}
+.curiosItemDescriptorText{
   font-size: 1.5vh;
   transition: ease 2s;
+  user-select: none; 
 }.curiosItemDescriptorText:hover{
   font-size: 2vh;
   transition: ease 2s;
