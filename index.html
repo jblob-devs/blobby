@@ -15,7 +15,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         <div id="blobSideBar" class="sidebar">
             <h1>Squad</h1>
             <div id="BlobbySidebarDiv">
-                <img height = "auto" width = "100vw" src="images/basicBlob.png"/>
+                <img height = "auto" width = "100vw" src="images/blobby.png"/>
                 <p>Blobby</p>
             </div>
             <button id="closeSideBarButton">X</button>
@@ -26,7 +26,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
             <h2>jblob blobby</h2>
             <div id="squadSideBar">
             <button id="openSideBarButton">
-                <img id="openSideBarImg" height = "auto" width = "80vw" src="images/basicBlob.png" />
+                <img id="openSideBarImg" height = "auto" width = "80vw" src="images/blobby.png" />
                 <p>Squad</p>
             </button>
             </div>
@@ -38,7 +38,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         </div>
 
         <div id="basicBlobDisplayDiv">
-        <img src= "images/basicBlob.png" height="auto" width="90vw" id="basicBlobDisplay" />
+        <img src= "images/blobby.png" height="auto" width="90vw" id="basicBlobDisplay" />
         <div class="progress-container">
         <div class="progress-bar" id="blobHealthbar">
             <span class="progressBarText" id="blobHealthText">ee</span>
@@ -64,7 +64,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
 
 
     <div id="shopDiv">
-        <p>pooo</p>
+        <h1>Shop</h1>
+        <i>The roving merchant offers you their wares...Buying them is not a matter of if, but a matter of when </i>
+        <h3>Rotating Essence Offers</h3>
+        <div id="rotatingEssenceOffers">
+
+        </div>
         <button class="backHome">Back</button>
     </div>
 
@@ -73,6 +78,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         <div id="InventoryNavBar">
             <a id="openablesLink" class="inventoryTab">Openables</a>
             <a id="resourcesLink" class="inventoryTab">Resources</a>
+            <a id="blobbitsLink" class="inventoryTab">Blob Bits</a>
         </div>
         <br>
         <br>
@@ -88,12 +94,17 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         </div>
     </div>
     <div id="resourcesDiv">
-        <h3>Salvage</h3>
+        <div id="salvageShardsAmountDiv"><p id="salvageShardsAmount"></p><button onclick = "whatIsThis('salvageShards')">?</button></div>
+        <div id="unidentifiedEssenceAmountDiv"></div><p id="unidentifiedEssenceAmount"></p><button onclick = "whatIsThis('unidentifiedEssence')">?</button></div>
+    </div>
+    <div id="blobbitsDiv">
+
+        
     </div>
         <button class="backHome">Back</button>
     </div>
     <div id="blobbyCharacterScreen">
-        <img src="images/basicBlob.png" />
+        <img src="images/blobby.png" />
         <h1>Blobby</h1>
         <p id="blobbyHPp">HP</p>
         <p id="blobbyDMGp">Damage</p>
@@ -131,6 +142,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
     <script src="js/index.js"></script>
     <script src="js/onclick.js"></script>
     <script src="js/items.js"></script>
+    <script src="js/update.js"></script>
 
     
 </html>

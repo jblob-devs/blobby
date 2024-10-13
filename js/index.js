@@ -10,15 +10,14 @@ var randEnemy = new enemyCreation(
     3000
 )
 var unidentifiedEssence = 0;
-eval("jelly")
-
-var redSalvage = 0;
-var greenSalvage = 0;
-var blueSalvage = 0;
-
+var salvageShards = 0;
 var frayedTreasureBag = 0;
 var patchedTreasureBag = 0;
 var robustTreasureBag = 0;
+
+let treasureBags = {
+    
+}
 
 let playerTap = {
     damage: 1,
@@ -29,14 +28,20 @@ let playerTap = {
 
 const displayNames ={
     jelly: "Jelly",
-    redSalvage: "Red Salvage",
-    greenSalvage: "Blue Salvage",
-    blueSalvage: "Green Salvage",
+    salvageShards: "Salvage Shards",
     frayedTreasureBag: "Frayed Treasure Bag",
     patchedTreasureBag: "Patched Treasure Bag",
     robustTreasureBag: "Robust Treasure Bag",
     unidentifiedEssence: "Unidentified Essence",
+    blobby: "Blobby",
+    slimeBlob: "Slime Blob"
 }
+
+let blobBits = {
+    blobby: 0,
+    slimeBlob: 0
+}
+
 
 
 let placeHolderCuriosItem = new curiosItem(

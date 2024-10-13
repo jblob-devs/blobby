@@ -103,4 +103,7 @@
 }.curiosItemDescriptorText:hover{
   font-size: 2vh;
   transition: ease 2s;
+}.blobbitscharacterdiv{
+  display: inline-block;
+  padding: 5vw;
 }

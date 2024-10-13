@@ -11,8 +11,8 @@ class reward{
 function addRewardArray(type, amount){
     let added = false;
     for(let i = 0; i < rewardArray.length; i++){
-        if(rewardArray.name == type){
-            rewardArray.amount += amount;
+        if(rewardArray[i].name == type){
+            rewardArray[i].amount += amount;
             added = true;
         }
     }
@@ -22,6 +22,7 @@ function addRewardArray(type, amount){
 }
 
 function sendRewardArray(){
+    console.log(rewardArray)
     let string = "Rewards Recieved <br>";
     for(let i = 0; i< rewardArray.length;i++){
         string += displayNames[rewardArray[i].name]  + ": " + rewardArray[i].amount + "<br>";
@@ -33,47 +34,92 @@ function sendRewardArray(){
 function clearRewardArray(){
     rewardArray = []
 }
-
 function openTreasureBags(type){
+    let nobags = true;
     /*
         Frayed Rewards
-        30% jelly 8 - 15
-        20% red salvage 1 - 3
-        20%  green salvage 1 - 3
-        20%  blue salvage 1 - 3
+        50% jelly 8 - 15
+        40%  salvage shards 1 - 3
         10% unidentified essence 3 - 5
 
         10% chance for a second reward
     */
+   
     if(type == "frayed" && frayedTreasureBag > 0){
-        let rand = randNum(1,10)
-        if(rand <= 3){
-            let amount = randNum(8,15)
-            addRewardArray("jelly",amount)
-        }else if(rand <= 5){
-            let amount = randNum(1,3)
-            addRewardArray("redSalvage", amount)
-        }else if(rand <= 7){
-            let amount = randNum(1,3)
-            addRewardArray("blueSalvage", amount)
-        }else if(rand <= 9){
-            let amount = randNum(1,3)
-            addRewardArray("greenSalvage", amount)
-        }else{
-            let amount = randNum(3,5)
-            addRewardArray("unidentifiedEssence", amount)
+        nobags = false;
+        while(frayedTreasureBag > 0){
+            let rand = randNum(1,10)
+            if(rand <= 5){
+                let amount = randNum(8,15)
+                addRewardArray("jelly",amount)
+            }else if(rand <= 9){
+                let amount = randNum(1,3)
+                addRewardArray("salvageShards", amount)
+            }else{
+                let amount = randNum(3,5)
+                addRewardArray("unidentifiedEssence", amount)
+            }
+            frayedTreasureBag--
         }
-        frayedTreasureBag--
-        
-    let out = sendRewardArray()
-    console.log(out)
-    Toast.fire({
-        icon: "info",
-        html: out
-      });
-    clearRewardArray()
-    }else{
-        Toast.fire({text:"You don't have any of this item!"})
-    }
+       
+  
+    }else if(type == "patched" && patchedTreasureBag > 0){
+        nobags = false;
+        /*
+        Patched Rewards
+        30% jelly 10 - 20
+        55%  salvage shards 3 - 5
+        15% unidentified essence  5 - 6
 
+        10% chance for a second reward
+    */
+        while(patchedTreasureBag > 0){
+            let rand = randNum(1,100)
+            if(rand <= 30){
+                let amount = randNum(10,20)
+                addRewardArray("jelly",amount)
+            }else if(rand <= 85){
+                let amount = randNum(3,5)
+                addRewardArray("salvageShards", amount)
+            }else{
+                let amount = randNum(5,6)
+                addRewardArray("unidentifiedEssence", amount)
+            }
+            patchedTreasureBag--
+        }
+    }else if(type == "robust" && robustTreasureBag > 0){
+        nobags = false;
+        while(frayedTreasureBag > 0){
+            let rand = randNum(1,10)
+            if(rand <= 5){
+                let amount = randNum(8,15)
+                addRewardArray("jelly",amount)
+            }else if(rand <= 9){
+                let amount = randNum(1,3)
+                addRewardArray("salvageShards", amount)
+            }else{
+                let amount = randNum(3,5)
+                addRewardArray("unidentifiedEssence", amount)
+            }
+            frayedTreasureBag--
+        }
+    }
+    if(nobags){
+        Toast.fire({text:"You don't have any of this treasure bag!"})
+    }else{
+        let out = sendRewardArray()
+        console.log(out)
+        Toast.fire({
+            icon: "info",
+            html: out
+          });
+        clearRewardArray()
+    }
+   
+
+}
+
+function whatIsThis(item){
+    if(item == 'salvageShards') Swal.fire({title:'Salvage Shards',text:'Can be used to craft new curios. Acquired from various reward pools',footer: '<i>shards broken from relics of the past, present and future. the possibilites are endless</i>'})
+    if(item == 'unidentifiedEssence') Swal.fire({title:'Unidentified Essence',text:'Primary resource used to get new blobs. Can be traded and converted into various other resources for blob summoning',footer: "<i>i'm not exactly sure what its from...but that makes it easier to turn it into anything</i>"})
 }
