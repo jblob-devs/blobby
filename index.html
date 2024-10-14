@@ -35,8 +35,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         <div id="stats">
             <p id="coinAMOUNT"></p>
             <p id="roundNumber"></p>
+            <p id="location"></p>
         </div>
-
+        <div id="battleDiv">
         <div id="basicBlobDisplayDiv">
         <img src= "images/blobby.png" height="auto" width="90vw" id="basicBlobDisplay" />
         <div class="progress-container">
@@ -50,16 +51,31 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         <div id="enemyDisplayDiv">
             <p id="enemyStatsDisplay">e</p>
         <img src= "images/warped.png" height="200vh" width="auto" id="enemyDisplay" />
-        <div class="progress-container">
-            <div class="progress-bar" id="enemyHealthbar">
-                <span class="progressBarText" id="enemyHealthText">ee</span>
-            </div>
-            
-        </div>    
+            <div class="progress-container">
+                <div class="progress-bar" id="enemyHealthbar">
+                    <span class="progressBarText" id="enemyHealthText">ee</span>
+                </div>
+                
+            </div>    
+        </div>
     </div>
+    <h4 id="currentObjective"></h4>
+        <div id="idleScreen">
+            <img src="images/blobby.png"/>
+            <p>Currently not adventuring...</p>
+            <p>Select a location in the adventure tab, or a quest to start!</p>
+        </div>
 
+        <div id="AdventureSelectScreen">
+            <div id="dailyMissionSelect"></div>
+            <div id="locationAdventureSelect">
+                <h4>Locations</h4>
+                <p><i>Adventure in locations for materials specific to each place!</i></p>
+            </div>
+        </div>
     <button id="toShop">Shop</button>
     <button id="toInventory">Inventory</button>
+    <button id="openAdventureTab">Adventure</button>
 </div>
 
 
@@ -99,9 +115,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
     </div>
     <div id="blobbitsDiv">
 
-        
-    </div>
         <button class="backHome">Back</button>
+    </div>
+        
     </div>
     <div id="blobbyCharacterScreen">
         <img src="images/blobby.png" />
@@ -143,6 +159,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
     <script src="js/onclick.js"></script>
     <script src="js/items.js"></script>
     <script src="js/update.js"></script>
+    <script src="js/saving.js"></script>
+    <script src="js/missions.js"></script>
 
     
 </html>

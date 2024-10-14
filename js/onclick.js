@@ -34,6 +34,8 @@ $("#openablesDiv").hide()
 $("#editCuriosConfigBtn").hide()
 $("#augmentsDiv").hide()
 $("#blobbitsDiv").hide()
+$("#idleScreen").hide()
+$("#AdventureSelectScreen").hide()
 
 
 
@@ -42,6 +44,14 @@ $("#toShop").on("click", function(){
     $("#shopDiv").slideDown()
 })
 
+$("#openAdventureTab").on("click",function(){
+if(battleActive){
+    Toast.fire("You can't currently start an adventure!")
+}else{
+    $("#AdventureSelectScreen").show()
+    $("#idleScreen").hide()
+}
+})
 
 //Side Bar
 $("#openSideBarButton").on("click",function(){
@@ -60,6 +70,7 @@ $(".backHome").on("click",function(){
     $("#blobbyCharacterScreen").slideUp()
     $("#inventoryDiv").slideUp()
     $("#augmentsDiv").slideUp()
+    $("#AdventureSelectScreen").slideUp()
 
 
     $("#playscreen").slideDown()

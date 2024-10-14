@@ -17,6 +17,7 @@ class tutorialEnemyCreation{
 }
 var tutorialEnemy = new tutorialEnemyCreation("Tutorial Warped", 2, 7000)
 
+
 class enemyCreation{
     constructor(name, level, boss, atkspeed){
         this.name= name;
@@ -29,6 +30,20 @@ class enemyCreation{
     }
 }
 
+
+let warped = new enemyCreation(
+    "Warped",
+    3,
+    false,
+    3000
+)
+
+let corrupted = new enemyCreation(
+    "Corrupted",
+    4,
+    false,
+    2000
+)
 class basicBlobConstructor{
     constructor(health,damage,atkspeed){
         //actual stats, changes to this are permanent
@@ -142,3 +157,20 @@ function createCuriosGrid(){
     }
 }
 
+function createEncounters(roundmax){
+    roundMAX = roundmax;
+    createNewRound()
+}
+function loadLocation(name){
+battleLocation = name
+$("#toAdventureSelectScreen").hide()
+$("#battleDiv").show();
+if(name == "Sun Plains"){
+    battleLocation = "Sun Plains"
+    createEncounters(10)
+    currentObjective = "Clear Round " + roundMAX
+}else if(name == "Slimy Woods"){
+
+}
+battleActive = true;
+}

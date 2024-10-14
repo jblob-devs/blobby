@@ -1,7 +1,7 @@
 #toShop{
     position: absolute;
-    bottom: 10vh;
-    right:50vw;
+    top: 35vh;
+    left:3vw;
 }#stats{
     position: absolute;
     top:4vh;
@@ -21,14 +21,14 @@
 }#toInventory{
     position: absolute;
     top:50vh;
-    left:4vw;
+    left:3vw;
 }#frayedTreasureBagDiv, #patchedTreasureBagDiv{
     display: inline-block;
     padding: 4vw;
 }#openAugmentsMenu{
     position: absolute;
-    top:40vh;
-    left:4vw;
+    top:45vh;
+    left:3vw;
 }.damage-number {
     position: absolute;
     font-size: 3vh;
@@ -36,4 +36,10 @@
     font-weight: bold;
     pointer-events: none; 
     animation: float-up 1s forwards;
+  }#currentObjective{
+   text-align: center;
+  }#openAdventureTab{
+    position: absolute;
+    top:40vh;
+    left:3vw;
   }

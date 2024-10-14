@@ -2,9 +2,14 @@ let mouseX;
 let mouseY
 var jelly = 0;
 var round = 1;
+var roundMAX = 10;
 var firstDeath = true;
+var battleActive = true;
+var currentObjective = "Clear Round 10"
+var beatFirst10Rounds  = false;
+var questActive = false;
 var randEnemy = new enemyCreation(
-    "poo",
+    "warped",
     3,
     false,
     3000
@@ -14,10 +19,7 @@ var salvageShards = 0;
 var frayedTreasureBag = 0;
 var patchedTreasureBag = 0;
 var robustTreasureBag = 0;
-
-let treasureBags = {
-    
-}
+var battleLocation  = "Sun Plains";
 
 let playerTap = {
     damage: 1,
@@ -34,12 +36,19 @@ const displayNames ={
     robustTreasureBag: "Robust Treasure Bag",
     unidentifiedEssence: "Unidentified Essence",
     blobby: "Blobby",
-    slimeBlob: "Slime Blob"
+    slimeBlob: "Slime Blob",
+    "SunPlains": "Sun Plains",
+    "SlimyWood": "Slimy Woods"
 }
 
 let blobBits = {
     blobby: 0,
     slimeBlob: 0
+}
+
+let locationStats = { 
+    "SunPlains": {unlocked:true, cleared: false},
+    "SlimyWoods": {unlocked:false, cleared: false}
 }
 
 
@@ -86,7 +95,7 @@ const Toast = Swal.mixin({
         title: "Hey there!"
       }).then((result) => {
         //adjust the time for a lengther text
-        toastTimer = 5000
+        toastTimer = 4000
         Toast.fire({
             icon: "info",
             timer: toastTimer,
@@ -99,17 +108,9 @@ const Toast = Swal.mixin({
   }
 
   function welcome2(){
-    toastTimer = 10000
     Toast.fire({
         icon: "info",
-        timer: toastTimer,
         title: "Phew! Blobby will continue to attack enemies, but keep it safe by helping it out!"
-      }).then((result)=>{
-        //if toast timer isnt set as the timer, itll be a default of 3000
-        Toast.fire({
-            icon: "info",
-            title: "Maybe you can look around for upgrades and items to help..."
-          });
       })
   }
 
@@ -195,7 +196,9 @@ function checkPlayerDeath(){
         round = round - (round % 10)
         createNewRound()
     }
+    blobby.curhealth = blobby.health
 }
+
     
 }
 
@@ -212,25 +215,46 @@ function createRandomDeathMessage(){
     return msg;
 }
 function createNewRound(){
+    if(round == roundMAX){
+        if(beatFirst10Rounds == false){
+            Swal.fire({title:'You explored the Sun Plains!',text:"You can start a new adventure using the tab on the left!"})
+            beatFirst10Rounds = true;
+            locationStats["SunPlains"].cleared = true
+        }else{
+            Swal.fire({title:'Location Exploration Complete!'})
+        }
+        battleActive = false;
+        exitBattle()
+    }else if(!questActive){
     if(round % 5 == 0){
         createNewBossEnemy()
     }else{
-        createNewEnemy()
-    } 
-    blobby.curhealth = blobby.health
-}
-
-function createNewEnemy(){
-    $("#enemyDisplay").attr('src','images/warped.png')
-    if(!tutorialEnemy.beat){
-        randEnemy = tutorialEnemy
-    }else{
-        randEnemy = new enemyCreation(
+        createNewEnemy(new enemyCreation(
             "Warped",
             3,
             false,
             3000
-        )
+        ))
+    } 
+}else{
+
+}
+}
+
+function exitBattle(){
+    $("#battleDiv").hide();
+    $("#idleScreen").show()
+    round = 0;
+    currentObjective = ""
+}
+
+
+function createNewEnemy(enemy){
+    $("#enemyDisplay").attr('src','images/warped.png')
+    if(!tutorialEnemy.beat){
+        randEnemy = tutorialEnemy
+    }else{
+        randEnemy = enemy
         randEnemy.health = randEnemy.health;
         randEnemy.curhealth = randEnemy.health;
     }

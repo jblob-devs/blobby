@@ -1,44 +1,65 @@
 
-const updateLoop = setInterval(function(){
+const statsUpdateLoop = setInterval(function(){
     //update jelly
     $("#coinAMOUNT").html("Jelly: " + jelly)
     $("#roundNumber").html("Round: " + round)
+    $("#location").html(battleLocation)
     
-    },100)
+},100)
     
     
     const basicBlobAttackLoop = setInterval(function(){
+        if(battleActive){
         $("#basicBlobDisplay").attr('src', 'images/blobbyAttack.png')
         basicBlobAttack()
         setTimeout(function(){
             $("#basicBlobDisplay").attr('src', 'images/blobby.png')
         },blobby.atkspeed)
+    }else{
+        $("#basicBlobDisplay").attr('src', 'images/blobby.png')
+    }
     },500+blobby.atkspeed)
     
     const enemyAttackLoop = setInterval(function(){
+        if(battleActive){
         enemyAttack()
+        }
     },randEnemy.atkspeed)
     
     
     const updateEnemyHealth = setInterval(function(){
+        if(battleActive){
         var healthbar = document.getElementById("enemyHealthbar")
         var healthbarText = document.getElementById("enemyHealthText")
         let percentage = (randEnemy.curhealth/randEnemy.health)* 100
         healthbar.style.width = percentage + '%'
         healthbarText.textContent = randEnemy.curhealth + " / " + randEnemy.health
         checkEnemyDeath()
+        }
     },100)
     
     
     const updateBlobHealth = setInterval(function(){
+        if(battleActive){
         var blobhealthbar = document.getElementById("blobHealthbar")
         var blobhealthbarText = document.getElementById("blobHealthText")
         let percentage = (blobby.curhealth/blobby.health)* 100
         blobhealthbar.style.width = percentage + '%'
         blobhealthbarText.textContent = blobby.curhealth + " / " + blobby.health
         checkPlayerDeath()
+        }else{
+            
+        }
     },100)
-    
+
+    const updateObjective = setInterval(function(){
+        if(currentObjective == ""){
+            $("#currentObjective").html(" ")
+        }else{
+        $("#currentObjective").html("Current Objective: " + currentObjective)
+        }
+    })
+
     const updateInventory = setInterval(function(){
     $("#frayedTreasureBagCount").html("Frayed Treasure Bags: " + frayedTreasureBag)
     $("#patchedTreasureBagCount").html("Patched Treasure Bags: " + patchedTreasureBag)
@@ -65,6 +86,21 @@ const updateLoop = setInterval(function(){
     }
 
     },100)
+
+    const updateAdventurableLocations = setInterval(function(){
+        for(let i = 0; i < Object.keys(locationStats).length; i++){
+            let div;
+            let parent = $("#locationAdventureSelect")
+            let name = Object.entries(locationStats)[i][0]
+            let unlocked = Object.entries(locationStats)[i][1].unlocked
+            if(unlocked){
+                if(!document.getElementById(`to${name}Div`)){
+                    div = $(`<div class="toLocationDiv" id="to${name}Div"><p>${displayNames[name]}</p><button onclick="loadLocation('${displayNames[name]}')">Enter</button></div>`)
+                    parent.append(div)
+                }
+            }
+        }
+    },100)
     
     const updateBlobbyDiv = setInterval(function(){
         $("#blobbyHPp").html("health: " + blobby.health)
@@ -75,8 +111,8 @@ const updateLoop = setInterval(function(){
         
         
     },100)
-    
+    /*
     const updateShop = setInterval(function(){
     $("#rotatingEssenceOffers")
     },100)
-    
+    */
