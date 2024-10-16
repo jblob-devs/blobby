@@ -122,4 +122,17 @@ function openTreasureBags(type){
 function whatIsThis(item){
     if(item == 'salvageShards') Swal.fire({title:'Salvage Shards',text:'Can be used to craft new curios. Acquired from various reward pools',footer: '<i>shards broken from relics of the past, present and future. the possibilites are endless</i>'})
     if(item == 'unidentifiedEssence') Swal.fire({title:'Unidentified Essence',text:'Primary resource used to get new blobs. Can be traded and converted into various other resources for blob summoning',footer: "<i>i'm not exactly sure what its from...but that makes it easier to turn it into anything</i>"})
+    if(item == 'sunPetals') Swal.fire({title:'Sun Petals',text:'Bright petals often found when exploring the Sun Plains.',footer: "<i>they say the sun itself came down and touched every one of these petals.</i>"})
+    }
+
+
+function calculateEndAdventureRewards(location,round){
+ if(location == "Sun Plains"){
+    var sunpetalsamounts = randNum(2,3)
+    Swal.fire({
+        title: `${location} adventure complete!`,
+        text:`Rewards: ${sunpetalsamounts} Sun Petals!`
+    })
+    materials.sunpetals+=sunpetalsamounts
+ }
 }

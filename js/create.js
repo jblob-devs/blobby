@@ -9,7 +9,7 @@ class tutorialEnemyCreation{
         this.name= name;
         this.level = level;
         this.beat = false;
-        this.health=randNum(30,30 + (10*level))
+        this.health=randNum(10,10 + (10*level))
         this.curhealth= this.health;
         this.damage=randNum(level, 2*level);
         this.atkspeed = atkspeed; //milliseconds
@@ -94,11 +94,17 @@ var curiosGrid={
 var blobby = new basicBlobConstructor(100,1,1000)
 
 class curiosItem{
-    constructor(name,icon,mods){
+    constructor(name,icon,resonance,mods){
         this.name = name
         this.icon = icon
+        this.resonance = resonance
         this.mods = mods;
     }
+}
+
+function curiosModList(num, name, type, extra){
+    let list = [num, name, type, extra]
+    return list;
 }
 
 let nullItem = new curiosItem(
@@ -114,16 +120,22 @@ function createCuriosGrid(){
     'gridTemplateColumns': `repeat(${curiosGrid.columns},100px)`,
     'gridTemplateRows': `repeat(${curiosGrid.rows},100px)`
     })
-    
+    curiosArr = []
+    curiosArr =  Array.from({ length: curiosGrid.rows }, () => Array(curiosGrid.columns).fill(null))
     let totcelnum = curiosGrid.columns * curiosGrid.rows
 
     grid.empty()
     let gridState = Array(totcelnum).fill(null)
-    curiosArr = []
+    
     for(let i =0; i < totcelnum;i++){
+        let row = Math.floor(i / curiosGrid.columns) + 1;
+        let col = (i % curiosGrid.columns) + 1;
+
         const gridItem = $('<div>lalalala</div>')
         .addClass('curios-grid-item')
         .attr('data-id',i+1)
+        .attr('data-row', row)
+        .attr('data-col', col);
        
   
         gridItem.on('click',function(){
@@ -156,6 +168,29 @@ function createCuriosGrid(){
         curiosArr[i] = null
     }
 }
+
+function getItemOn(cur, side){
+    let pos = curiosArr.indexOf(cur)
+
+    let curRows = Math.floor(pos / curiosGrid.columns) + 1
+    let curCols = (pos % curiosGrid.columns) + 1
+
+    let item;
+    if(curRows++ > curiosGrid.rows || curRows-- > curiosGrid.rows || curCols-- < 0 || curCols++ > curiosGrid.columns){
+        return null
+    }
+    if(side == 'down'){
+        item = $(`.curios-grid-item[data-row='${curRows + 1}'][data-col='${curCols}']`);
+    }else if(side == 'up'){
+        item = $(`.curios-grid-item[data-row='${curRows - 1}'][data-col='${curCols}']`);
+    }else if(side == 'right'){
+        item = $(`.curios-grid-item[data-row='${curRows}'][data-col='${curCols+1}']`);
+    }else if(side == 'left'){
+        item = $(`.curios-grid-item[data-row='${curRows}'][data-col='${curCols-1}']`);
+    }
+    return item
+}
+
 
 function createEncounters(roundmax){
     roundMAX = roundmax;

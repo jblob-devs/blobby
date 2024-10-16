@@ -14,8 +14,6 @@ var randEnemy = new enemyCreation(
     false,
     3000
 )
-var unidentifiedEssence = 0;
-var salvageShards = 0;
 var frayedTreasureBag = 0;
 var patchedTreasureBag = 0;
 var robustTreasureBag = 0;
@@ -38,12 +36,19 @@ const displayNames ={
     blobby: "Blobby",
     slimeBlob: "Slime Blob",
     "SunPlains": "Sun Plains",
-    "SlimyWood": "Slimy Woods"
+    "SlimyWood": "Slimy Woods",
+    sunpetals: "Sun petals"
 }
 
 let blobBits = {
     blobby: 0,
     slimeBlob: 0
+}
+
+let materials = {
+    unidentifiedEssence:0,
+    salvageShards:0,
+    sunPetals: 0
 }
 
 let locationStats = { 
@@ -52,21 +57,7 @@ let locationStats = {
 }
 
 
-
-let placeHolderCuriosItem = new curiosItem(
-    'Placeholder', 
-    'sigma', 
-    {
-        baseDMGBuff: curiosModList(2,"Base Damage", "buff", ""),
-        healthPercentageBuff: curiosModList(10,"Health", "buff", "%")
-    }
-)
-
-function curiosModList(num, name, type, extra){
-    let list = [num, name, type, extra]
-    return list;
-}
-let UnlockedCuriosList = [placeHolderCuriosItem]
+let UnlockedCuriosList = [curios.smoothStone]
 let curiosArr = []
 
 
@@ -231,9 +222,9 @@ function createNewRound(){
     }else{
         createNewEnemy(new enemyCreation(
             "Warped",
-            3,
+            1,
             false,
-            3000
+            5000
         ))
     } 
 }else{
@@ -246,8 +237,8 @@ function exitBattle(){
     $("#idleScreen").show()
     round = 0;
     currentObjective = ""
+    calculateEndAdventureRewards(battleLocation,round)
 }
-
 
 function createNewEnemy(enemy){
     $("#enemyDisplay").attr('src','images/warped.png')

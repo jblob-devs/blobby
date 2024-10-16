@@ -64,9 +64,9 @@ const statsUpdateLoop = setInterval(function(){
     $("#frayedTreasureBagCount").html("Frayed Treasure Bags: " + frayedTreasureBag)
     $("#patchedTreasureBagCount").html("Patched Treasure Bags: " + patchedTreasureBag)
 
-    $("#salvageShardsAmount").html("Salvage Shards: " + salvageShards)
-    $("#unidentifiedEssenceAmount").html("Unidentified Essence: " + unidentifiedEssence)
-    
+    $("#salvageShardsAmount").html("Salvage Shards: " + materials.salvageShards)
+    $("#unidentifiedEssenceAmount").html("Unidentified Essence: " + materials.unidentifiedEssence)
+    $("#sunPetalsAmount").html("Sun Petals: " + materials.sunPetals)
 
     //blob bits
     
