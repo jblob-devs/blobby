@@ -6,7 +6,18 @@ const statsUpdateLoop = setInterval(function(){
     $("#location").html(battleLocation)
     
 },100)
-    
+    const battleLoop = setInterval(function(){
+        if(battleActive){
+            if(round > 5){
+                $("#extractFromAdventureButton").show()
+            }else{
+                $("#extractFromAdventureButton").hide()
+            }
+            
+        }else{
+            $("#extractFromAdventureButton").hide()
+        }
+    })
     
     const basicBlobAttackLoop = setInterval(function(){
         if(battleActive){
@@ -64,12 +75,7 @@ const statsUpdateLoop = setInterval(function(){
     $("#frayedTreasureBagCount").html("Frayed Treasure Bags: " + frayedTreasureBag)
     $("#patchedTreasureBagCount").html("Patched Treasure Bags: " + patchedTreasureBag)
 
-    $("#salvageShardsAmount").html("Salvage Shards: " + materials.salvageShards)
-    $("#unidentifiedEssenceAmount").html("Unidentified Essence: " + materials.unidentifiedEssence)
-    $("#sunPetalsAmount").html("Sun Petals: " + materials.sunPetals)
-
-    //blob bits
-    
+    //abstraction for inventory blob bits amount
     for (let i = 0; i < Object.keys(blobBits).length; i++){
        
         let div = $("#blobbitsDiv")
@@ -83,6 +89,22 @@ const statsUpdateLoop = setInterval(function(){
         $(`#${name}bitsamount`).html("Bits: " + Object.entries(blobBits)[i][1])
     
     }
+    }
+
+    //abstraction of inventory resources
+    for(let i = 0; i < Object.keys(materials).length; i++){
+        let div;
+        let parent = $("#resourcesDiv")
+        let name = Object.entries(materials)[i][0]
+        let amount = Object.entries(materials)[i][1]
+        if(amount > 0){
+            if(!document.getElementById(`${name}AmountDiv`)){
+                div = $(`<div class="resourceCounterDiv" id="${name}AmountDiv"><p id='${name}AmountP'>${displayNames[name]}</p><button onclick="whatIsThis('${displayNames[name]}')">?</button></div>`)
+                parent.append(div)
+            }else{
+                $(`#${name}AmountP`).html(`${displayNames[name]}: ${amount}`)
+            }
+        }
     }
 
     },100)
@@ -101,6 +123,7 @@ const statsUpdateLoop = setInterval(function(){
             }
         }
     },100)
+
     
     const updateBlobbyDiv = setInterval(function(){
         $("#blobbyHPp").html("health: " + blobby.health)

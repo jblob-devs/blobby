@@ -191,19 +191,15 @@ function getItemOn(cur, side){
     return item
 }
 
-
-function createEncounters(roundmax){
-    roundMAX = roundmax;
-    createNewRound()
-}
 function loadLocation(name){
 battleLocation = name
 $("#toAdventureSelectScreen").hide()
+$("#AdventureSelectScreen").hide()
 $("#battleDiv").show();
 if(name == "Sun Plains"){
     battleLocation = "Sun Plains"
-    createEncounters(10)
-    currentObjective = "Clear Round " + roundMAX
+    createNewRound()
+    currentObjective = "Explore and clear rounds for rewards! Extraction is unlocked after round 5!"
 }else if(name == "Slimy Woods"){
 
 }

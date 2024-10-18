@@ -2,7 +2,6 @@ let mouseX;
 let mouseY
 var jelly = 0;
 var round = 1;
-var roundMAX = 10;
 var firstDeath = true;
 var battleActive = true;
 var currentObjective = "Clear Round 10"
@@ -37,7 +36,7 @@ const displayNames ={
     slimeBlob: "Slime Blob",
     "SunPlains": "Sun Plains",
     "SlimyWood": "Slimy Woods",
-    sunpetals: "Sun petals"
+    sunPetals: "Sun petals"
 }
 
 let blobBits = {
@@ -206,17 +205,19 @@ function createRandomDeathMessage(){
     return msg;
 }
 function createNewRound(){
-    if(round == roundMAX){
-        if(beatFirst10Rounds == false){
-            Swal.fire({title:'You explored the Sun Plains!',text:"You can start a new adventure using the tab on the left!"})
-            beatFirst10Rounds = true;
-            locationStats["SunPlains"].cleared = true
-        }else{
-            Swal.fire({title:'Location Exploration Complete!'})
-        }
-        battleActive = false;
-        exitBattle()
-    }else if(!questActive){
+
+    if(beatFirst10Rounds == false && round == 10){
+        beatFirst10Rounds = true;
+        locationStats["SunPlains"].cleared = true
+        battleActive = false
+        currentObjective = ""
+        $("#battleDiv").hide();
+        $("#idleScreen").show()
+        round = 1
+        Swal.fire({title:'You explored the Sun Plains!',text:"You can start a new adventure using the tab on the left!"})
+    }
+
+if(!questActive){
     if(round % 5 == 0){
         createNewBossEnemy()
     }else{
@@ -226,18 +227,18 @@ function createNewRound(){
             false,
             5000
         ))
-    } 
-}else{
-
+    }
 }
 }
 
-function exitBattle(){
+function exitAdventureBattle(){
+    battleActive = false
     $("#battleDiv").hide();
     $("#idleScreen").show()
-    round = 0;
+    Swal.fire({title:'Location Exploration Complete!'})
     currentObjective = ""
     calculateEndAdventureRewards(battleLocation,round)
+    round = 1
 }
 
 function createNewEnemy(enemy){

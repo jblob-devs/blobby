@@ -127,12 +127,22 @@ function whatIsThis(item){
 
 
 function calculateEndAdventureRewards(location,round){
+    let roundmarker = round - round % 5
  if(location == "Sun Plains"){
-    var sunpetalsamounts = randNum(2,3)
+    var sunpetalsamounts;
+    if(roundmarker >= 20){
+       sunpetalsamounts = randNum(10,15)
+    }else if(roundmarker >= 15){
+        sunpetalsamounts = randNum(8,10)
+    }else if(roundmarker >= 10){
+        sunpetalsamounts = randNum(5,8)
+    }else{
+        sunpetalsamounts = randNum(3,5)
+    }
     Swal.fire({
         title: `${location} adventure complete!`,
         text:`Rewards: ${sunpetalsamounts} Sun Petals!`
     })
-    materials.sunpetals+=sunpetalsamounts
+    materials.sunPetals+=sunpetalsamounts
  }
 }

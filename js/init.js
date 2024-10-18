@@ -10,7 +10,7 @@ Entropic
 let curios={
     smoothStone: new curiosItem(
         'Smooth Stone', 
-        'sigma', 
+        'sigma', //icon
         'Syntactic',
         {
             baseDMGBuff: curiosModList(2,"Base Damage", "buff", ""),

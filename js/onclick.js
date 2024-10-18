@@ -53,6 +53,23 @@ if(battleActive){
 }
 })
 
+$("#extractFromAdventureButton").on("click",function(){
+Swal.fire({
+    title:"Extract?", 
+    text:`You'll only get rewards up to Round ${round - (round % 5)}`,
+    showCancelButton: true,
+    confirmButtonText: 'Extract!',
+    cancelButtonText: 'Continue exploring'
+}).then((result) => {
+    if(result.isConfirmed){
+        exitAdventureBattle()
+    }else{
+        Toast.fire('Adventure resumed...')
+    }
+})
+
+})
+
 //Side Bar
 $("#openSideBarButton").on("click",function(){
     $("#blobSideBar").css('width','30vw')
