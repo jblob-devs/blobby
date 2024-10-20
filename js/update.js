@@ -1,4 +1,10 @@
 
+
+const gameSaveUpdate = setInterval(function(){
+    mapGameDataToGlobals()
+   saveGame()
+},100)
+
 const statsUpdateLoop = setInterval(function(){
     //update jelly
     $("#coinAMOUNT").html("Jelly: " + jelly)

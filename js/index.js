@@ -1,29 +1,13 @@
 let mouseX;
 let mouseY
-var jelly = 0;
-var round = 1;
-var firstDeath = true;
-var battleActive = true;
-var currentObjective = "Clear Round 10"
-var beatFirst10Rounds  = false;
-var questActive = false;
-var randEnemy = new enemyCreation(
+
+randEnemy = new enemyCreation(
     "warped",
     3,
     false,
     3000
 )
-var frayedTreasureBag = 0;
-var patchedTreasureBag = 0;
-var robustTreasureBag = 0;
-var battleLocation  = "Sun Plains";
 
-let playerTap = {
-    damage: 1,
-    damageType: 'physical',
-    critChance: 10,
-    critMultiplier: 1.2
-}
 
 const displayNames ={
     jelly: "Jelly",
@@ -39,26 +23,12 @@ const displayNames ={
     sunPetals: "Sun petals"
 }
 
-let blobBits = {
-    blobby: 0,
-    slimeBlob: 0
-}
-
-let materials = {
-    unidentifiedEssence:0,
-    salvageShards:0,
-    sunPetals: 0
-}
-
-let locationStats = { 
-    "SunPlains": {unlocked:true, cleared: false},
-    "SlimyWoods": {unlocked:false, cleared: false}
-}
-
-
-let UnlockedCuriosList = [curios.smoothStone]
-let curiosArr = []
-
+let  = randEnemy = new enemyCreation(
+    "warped",
+    3,
+    false,
+    3000
+)
 
 //create sweetalert toast
 var toastTimer  = 3000
@@ -75,33 +45,45 @@ const Toast = Swal.mixin({
   });
 
   function welcome(){
-   
-    $("#enemyStatsDisplay").html("Tutorial Enemy")
-    
-    randEnemy = tutorialEnemy
-    Toast.fire({
-        icon: "info",
-        timer: toastTimer,
-        title: "Hey there!"
-      }).then((result) => {
-        //adjust the time for a lengther text
-        toastTimer = 4000
-        Toast.fire({
-            icon: "info",
-            timer: toastTimer,
-            title: "Why don't you help Blobby out by tapping that warped enemy!"
-          });
-          //rest to default time
-          toastTimer = 3000
-      })
-      
+    Swal.fire({
+        text:'Would you like to load your saved game?'
+    }).then((result) => {
+        if(result.isConfirmed){
+            loadGame()
+            battleActive = false;
+            $("#battleDiv").hide();
+            $("#idleScreen").show()
+        }else{
+                $("#enemyStatsDisplay").html("Tutorial Enemy")
+                
+                randEnemy = tutorialEnemy
+                Toast.fire({
+                    icon: "info",
+                    timer: toastTimer,
+                    title: "Hey there!"
+                  }).then((result) => {
+                    //adjust the time for a lengther text
+                    toastTimer = 4000
+                    Toast.fire({
+                        icon: "info",
+                        timer: toastTimer,
+                        title: "Why don't you help Blobby out by tapping that warped enemy!"
+                      });
+                      //rest to default time
+                      toastTimer = 3000
+                  })
+        }
+    })
+
   }
 
   function welcome2(){
+    if(!beatFirst10Rounds){
     Toast.fire({
         icon: "info",
         title: "Phew! Blobby will continue to attack enemies, but keep it safe by helping it out!"
       })
+    }
   }
 
 function tapEnemy(){

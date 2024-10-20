@@ -1,3 +1,4 @@
+
 //Resonance
 /*
 Syntactic
@@ -6,6 +7,7 @@ Chaotic
 Entropic
 
 */
+
 
 let curios={
     smoothStone: new curiosItem(
@@ -19,3 +21,44 @@ let curios={
     ),
 
 }
+
+
+
+let gameData = {
+    jelly: 0,
+    round: 1,
+    firstDeath: true,
+    battleActive: true,
+    currentObjective: "Clear Round 10",
+    beatFirst10Rounds: false,
+    questActive: false,
+   frayedTreasureBag: 0,
+   patchedTreasureBag: 0,
+   robustTreasureBag: 0,
+   battleLocation: "Sun Plains",
+   
+   playerTap: {
+       damage: 1,
+       damageType: 'physical',
+       critChance: 10,
+       critMultiplier: 1.2
+   },
+   blobBits: {
+       blobby: 0,
+       slimeBlob: 0
+   },
+   materials: {
+       unidentifiedEssence:0,
+       salvageShards:0,
+       sunPetals: 0
+   },
+   locationStats: { 
+       "SunPlains": {unlocked:true, cleared: false},
+       "SlimyWoods": {unlocked:false, cleared: false}
+   },
+   
+   
+   UnlockedCuriosList: [curios.smoothStone],
+   curiosArr: [],
+   }
+   
