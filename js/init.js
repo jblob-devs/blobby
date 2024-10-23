@@ -31,6 +31,7 @@ let gameData = {
     battleActive: true,
     currentObjective: "Clear Round 10",
     beatFirst10Rounds: false,
+    tutorialEnemyBeat: false,
     questActive: false,
    frayedTreasureBag: 0,
    patchedTreasureBag: 0,

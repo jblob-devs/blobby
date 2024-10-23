@@ -1,8 +1,10 @@
 
 
 const gameSaveUpdate = setInterval(function(){
+    if(letsave){
     mapGameDataToGlobals()
-   saveGame()
+    saveGame()
+    }
 },100)
 
 const statsUpdateLoop = setInterval(function(){
@@ -13,7 +15,7 @@ const statsUpdateLoop = setInterval(function(){
     
 },100)
     const battleLoop = setInterval(function(){
-        if(battleActive){
+        if(battleActive && beatFirst10Rounds){
             if(round > 5){
                 $("#extractFromAdventureButton").show()
             }else{
@@ -70,11 +72,16 @@ const statsUpdateLoop = setInterval(function(){
     },100)
 
     const updateObjective = setInterval(function(){
+    if(battleActive){
+        $("#currentObjective").show()
         if(currentObjective == ""){
             $("#currentObjective").html(" ")
         }else{
         $("#currentObjective").html("Current Objective: " + currentObjective)
         }
+    }else{
+        $("#currentObjective").hide()
+    }
     })
 
     const updateInventory = setInterval(function(){

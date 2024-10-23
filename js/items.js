@@ -54,10 +54,10 @@ function openTreasureBags(type){
                 addRewardArray("jelly",amount)
             }else if(rand <= 9){
                 let amount = randNum(1,3)
-                addRewardArray("salvageShards", amount)
+                addRewardArray("materials.salvageShards", amount)
             }else{
                 let amount = randNum(3,5)
-                addRewardArray("unidentifiedEssence", amount)
+                addRewardArray("materials.unidentifiedEssence", amount)
             }
             frayedTreasureBag--
         }
@@ -128,6 +128,7 @@ function whatIsThis(item){
 
 function calculateEndAdventureRewards(location,round){
     let roundmarker = round - round % 5
+    let jellyearned = 10 * round;
  if(location == "Sun Plains"){
     var sunpetalsamounts;
     if(roundmarker >= 20){
@@ -141,7 +142,13 @@ function calculateEndAdventureRewards(location,round){
     }
     Swal.fire({
         title: `${location} adventure complete!`,
-        text:`Rewards: ${sunpetalsamounts} Sun Petals!`
+        html:
+        `<b>Rewards:</b> <br>
+        <i>
+        ${sunpetalsamounts} Sun Petals <br>
+        ${jellyearned} jelly
+        </i>
+        `
     })
     materials.sunPetals+=sunpetalsamounts
  }

@@ -1,5 +1,6 @@
 let mouseX;
-let mouseY
+let mouseY;
+let letsave = false;
 
 randEnemy = new enemyCreation(
     "warped",
@@ -11,11 +12,11 @@ randEnemy = new enemyCreation(
 
 const displayNames ={
     jelly: "Jelly",
-    salvageShards: "Salvage Shards",
+    'materials.salvageShards': "Salvage Shards",
     frayedTreasureBag: "Frayed Treasure Bag",
     patchedTreasureBag: "Patched Treasure Bag",
     robustTreasureBag: "Robust Treasure Bag",
-    unidentifiedEssence: "Unidentified Essence",
+    'materials.unidentifiedEssence': "Unidentified Essence",
     blobby: "Blobby",
     slimeBlob: "Slime Blob",
     "SunPlains": "Sun Plains",
@@ -30,6 +31,104 @@ let  = randEnemy = new enemyCreation(
     3000
 )
 
+
+
+function createCuriosGrid(){
+    let grid = $("#curios-grid-container")
+    grid.css({
+    'gridTemplateColumns': `repeat(${curiosGrid.columns},100px)`,
+    'gridTemplateRows': `repeat(${curiosGrid.rows},100px)`
+    })
+    
+
+    let totcelnum = curiosGrid.columns * curiosGrid.rows
+
+    grid.empty()
+    let gridState = Array(totcelnum).fill(null)
+    
+    for(let i =0; i < totcelnum;i++){
+        let row = Math.floor(i / curiosGrid.columns) + 1;
+        let col = (i % curiosGrid.columns) + 1;
+        const gridItem = $(`<div>${curiosArr[i].name}</div>`)
+        .addClass('curios-grid-item')
+        .attr('data-id',i+1)
+        .attr('data-row', row)
+        .attr('data-col', col);
+       
+  
+        gridItem.on('click',function(){
+            
+        })
+       
+        gridItem.droppable({
+            accept: ".curios-item-draggable",
+            hoverClass:'over',
+            drop: function(event, ui){
+                
+                const dropped = ui.helper.html()
+                console.log(dropped)
+                let name = $(ui.helper).find('.curiosItemName').text()
+                
+                for(let i =0; i < UnlockedCuriosList.length; i++){
+                    if(UnlockedCuriosList[i].name == name){
+                        curiosArr[gridItem.data("id")] = UnlockedCuriosList[i]
+                    }
+                }
+                
+                $(this).empty().html(name);
+            }
+        })
+        grid.append(gridItem)
+
+
+        //populate curios array with no item
+    
+        
+    }
+}
+
+function getItemOn(cur, side){
+    let pos = curiosArr.indexOf(cur)
+
+    let curRows = Math.floor(pos / curiosGrid.columns) + 1
+    let curCols = (pos % curiosGrid.columns) + 1
+
+    let item;
+    if(curRows++ > curiosGrid.rows || curRows-- > curiosGrid.rows || curCols-- < 0 || curCols++ > curiosGrid.columns){
+        return null
+    }
+    if(side == 'down'){
+        item = $(`.curios-grid-item[data-row='${curRows + 1}'][data-col='${curCols}']`);
+    }else if(side == 'up'){
+        item = $(`.curios-grid-item[data-row='${curRows - 1}'][data-col='${curCols}']`);
+    }else if(side == 'right'){
+        item = $(`.curios-grid-item[data-row='${curRows}'][data-col='${curCols+1}']`);
+    }else if(side == 'left'){
+        item = $(`.curios-grid-item[data-row='${curRows}'][data-col='${curCols-1}']`);
+    }
+    return item
+}
+
+function loadLocation(name){
+battleLocation = name
+$("#toAdventureSelectScreen").hide()
+$("#AdventureSelectScreen").hide()
+$("#battleDiv").show();
+if(name == "Sun Plains"){
+    battleLocation = "Sun Plains"
+    preBattlePrep()
+    createNewRound()
+    currentObjective = "Explore and clear rounds for rewards! <br> Extraction is unlocked after round 5!"
+}else if(name == "Slimy Woods"){
+
+}
+battleActive = true;
+}
+
+function preBattlePrep(){
+    round = 1
+    blobby.curhealth = blobby.health
+}
 //create sweetalert toast
 var toastTimer  = 3000
 const Toast = Swal.mixin({
@@ -44,38 +143,43 @@ const Toast = Swal.mixin({
     }
   });
 
-  function welcome(){
-    Swal.fire({
-        text:'Would you like to load your saved game?'
-    }).then((result) => {
-        if(result.isConfirmed){
-            loadGame()
-            battleActive = false;
-            $("#battleDiv").hide();
-            $("#idleScreen").show()
-        }else{
-                $("#enemyStatsDisplay").html("Tutorial Enemy")
+  function startTutorial(){
+    $("#enemyStatsDisplay").html("Tutorial Enemy")
                 
-                randEnemy = tutorialEnemy
-                Toast.fire({
-                    icon: "info",
-                    timer: toastTimer,
-                    title: "Hey there!"
-                  }).then((result) => {
-                    //adjust the time for a lengther text
-                    toastTimer = 4000
-                    Toast.fire({
-                        icon: "info",
-                        timer: toastTimer,
-                        title: "Why don't you help Blobby out by tapping that warped enemy!"
-                      });
-                      //rest to default time
-                      toastTimer = 3000
-                  })
-        }
-    })
-
+    randEnemy = tutorialEnemy
+    Toast.fire({
+        icon: "info",
+        timer: toastTimer,
+        title: "Hey there!"
+      }).then((result) => {
+        //adjust the time for a lengther text
+        toastTimer = 4000
+        Toast.fire({
+            icon: "info",
+            timer: toastTimer,
+            title: "Why don't you help Blobby out by tapping that warped enemy!"
+          });
+          //rest to default time
+          toastTimer = 3000
+      })
   }
+
+function welcome(){
+    let save = localStorage.getItem('gameSave') ? JSON.parse(localStorage.getItem('gameSave')): null
+    if(save.beatFirst10Rounds == false){
+        startTutorial()
+        createCuriosGrid()
+    }else{
+        loadGame()
+        createCuriosGrid()
+        applyCuriosConfig(curiosArr)
+        battleActive = false;
+        $("#battleDiv").hide();
+        $("#idleScreen").show()
+    }
+    letsave=  true;
+    
+}
 
   function welcome2(){
     if(!beatFirst10Rounds){
@@ -139,6 +243,9 @@ function enemyAttack(){
 }
 
 function checkEnemyDeath(){
+    if(!tutorialEnemyBeat){
+      tutorialEnemyBeat = true;  
+    }
     if(randEnemy.curhealth <= 0){
         createReward()
         round++
@@ -205,7 +312,7 @@ if(!questActive){
     }else{
         createNewEnemy(new enemyCreation(
             "Warped",
-            1,
+            Math.ceil(round * 0.5),
             false,
             5000
         ))
@@ -225,19 +332,18 @@ function exitAdventureBattle(){
 
 function createNewEnemy(enemy){
     $("#enemyDisplay").attr('src','images/warped.png')
-    if(!tutorialEnemy.beat){
+    if(!tutorialEnemyBeat){
         randEnemy = tutorialEnemy
     }else{
         randEnemy = enemy
         randEnemy.health = randEnemy.health;
         randEnemy.curhealth = randEnemy.health;
     }
-    $("#enemyStatsDisplay").html(randEnemy.name + " Lv." + randEnemy.level)
+    $("#enemyStatsDisplay").html(enemy.name + " Lv." + enemy.level)
     
 }
 
 function createReward(){
-    jelly+=10
     if(randEnemy.boss){
         randomBossReward = createRandomBossReward()
         Toast.fire({
@@ -275,5 +381,8 @@ function createRandomBossReward(){
     }
     
 }
-welcome()
-createCuriosGrid()
+//in a document.ready so the function only runs once all elements are loaded
+$( document ).ready(function() {
+    welcome()
+});
+

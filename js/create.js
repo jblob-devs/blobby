@@ -8,7 +8,6 @@ class tutorialEnemyCreation{
     constructor(name, level, atkspeed){
         this.name= name;
         this.level = level;
-        this.beat = false;
         this.health=randNum(10,10 + (10*level))
         this.curhealth= this.health;
         this.damage=randNum(level, 2*level);
@@ -113,95 +112,3 @@ let nullItem = new curiosItem(
     {
     }
 )
-
-function createCuriosGrid(){
-    let grid = $("#curios-grid-container")
-    grid.css({
-    'gridTemplateColumns': `repeat(${curiosGrid.columns},100px)`,
-    'gridTemplateRows': `repeat(${curiosGrid.rows},100px)`
-    })
-    curiosArr = []
-    curiosArr =  Array.from({ length: curiosGrid.rows }, () => Array(curiosGrid.columns).fill(null))
-    let totcelnum = curiosGrid.columns * curiosGrid.rows
-
-    grid.empty()
-    let gridState = Array(totcelnum).fill(null)
-    
-    for(let i =0; i < totcelnum;i++){
-        let row = Math.floor(i / curiosGrid.columns) + 1;
-        let col = (i % curiosGrid.columns) + 1;
-
-        const gridItem = $('<div>lalalala</div>')
-        .addClass('curios-grid-item')
-        .attr('data-id',i+1)
-        .attr('data-row', row)
-        .attr('data-col', col);
-       
-  
-        gridItem.on('click',function(){
-            gridItemClick(i+1,gridState,gridItem)
-        })
-       
-        gridItem.droppable({
-            accept: ".curios-item-draggable",
-            hoverClass:'over',
-            drop: function(event, ui){
-                
-                const dropped = ui.helper.html()
-                console.log(dropped)
-                let name = $(ui.helper).find('.curiosItemName').text()
-                
-                for(let i =0; i < UnlockedCuriosList.length; i++){
-                    if(UnlockedCuriosList[i].name == name){
-                        curiosArr[gridItem.data("id")] = UnlockedCuriosList[i]
-                    }
-                }
-                
-                $(this).empty().html(name);
-            }
-        })
-        grid.append(gridItem)
-
-
-        //populate curios array with no item
-    
-        curiosArr[i] = null
-    }
-}
-
-function getItemOn(cur, side){
-    let pos = curiosArr.indexOf(cur)
-
-    let curRows = Math.floor(pos / curiosGrid.columns) + 1
-    let curCols = (pos % curiosGrid.columns) + 1
-
-    let item;
-    if(curRows++ > curiosGrid.rows || curRows-- > curiosGrid.rows || curCols-- < 0 || curCols++ > curiosGrid.columns){
-        return null
-    }
-    if(side == 'down'){
-        item = $(`.curios-grid-item[data-row='${curRows + 1}'][data-col='${curCols}']`);
-    }else if(side == 'up'){
-        item = $(`.curios-grid-item[data-row='${curRows - 1}'][data-col='${curCols}']`);
-    }else if(side == 'right'){
-        item = $(`.curios-grid-item[data-row='${curRows}'][data-col='${curCols+1}']`);
-    }else if(side == 'left'){
-        item = $(`.curios-grid-item[data-row='${curRows}'][data-col='${curCols-1}']`);
-    }
-    return item
-}
-
-function loadLocation(name){
-battleLocation = name
-$("#toAdventureSelectScreen").hide()
-$("#AdventureSelectScreen").hide()
-$("#battleDiv").show();
-if(name == "Sun Plains"){
-    battleLocation = "Sun Plains"
-    createNewRound()
-    currentObjective = "Explore and clear rounds for rewards! Extraction is unlocked after round 5!"
-}else if(name == "Slimy Woods"){
-
-}
-battleActive = true;
-}

@@ -154,10 +154,6 @@ function applyCuriosConfig(curiosArray){
     blobby.applyCurios(curiosArray)
 }
 
-function gridItemClick(num,arr,thisitem){
-
-}
-
 function loadCurios(){
     for(let i =0; i < UnlockedCuriosList.length; i++){
         
