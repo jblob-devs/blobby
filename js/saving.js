@@ -1,4 +1,9 @@
 
+function clearSave(){
+    localStorage.clear()
+    location.reload()
+}
+
 function saveGame(){
     localStorage.setItem('gameSave', JSON.stringify(gameData))
 }

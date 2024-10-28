@@ -49,7 +49,15 @@ function createCuriosGrid(){
     for(let i =0; i < totcelnum;i++){
         let row = Math.floor(i / curiosGrid.columns) + 1;
         let col = (i % curiosGrid.columns) + 1;
-        const gridItem = $(`<div>${curiosArr[i].name}</div>`)
+
+        let curiosname;
+        //initialize name
+        if(curiosArr[i] == undefined){
+            curiosname = "Empty"
+        }else{
+            curiosname = curiosArr[i].name
+        }
+        const gridItem = $(`<div>${curiosname}</div>`)
         .addClass('curios-grid-item')
         .attr('data-id',i+1)
         .attr('data-row', row)
@@ -166,7 +174,7 @@ const Toast = Swal.mixin({
 
 function welcome(){
     let save = localStorage.getItem('gameSave') ? JSON.parse(localStorage.getItem('gameSave')): null
-    if(save.beatFirst10Rounds == false){
+    if(save != null && save.beatFirst10Rounds == false){
         startTutorial()
         createCuriosGrid()
     }else{
