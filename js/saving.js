@@ -1,7 +1,16 @@
 
 function clearSave(){
-    localStorage.clear()
-    location.reload()
+    Swal.fire({
+        title:'Are you sure you want to clear your save?',
+        text: "It can't be recovered!",
+        showCancelButton: true,
+    }).then((result) => {
+       if(result.isConfirmed){
+        localStorage.clear()
+        location.reload()
+       }
+      })
+    
 }
 
 function saveGame(){

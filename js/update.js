@@ -12,6 +12,12 @@ const statsUpdateLoop = setInterval(function(){
     $("#coinAMOUNT").html("Jelly: " + jelly)
     $("#roundNumber").html("Round: " + round)
     $("#location").html(battleLocation)
+
+    if(questsArr.length > 0){
+        $("#questMissionAvailable").show()
+    }else{
+        $("#questMissionAvailable").hide()
+    }
     
 },100)
     const battleLoop = setInterval(function(){
@@ -112,7 +118,7 @@ const statsUpdateLoop = setInterval(function(){
         let amount = Object.entries(materials)[i][1]
         if(amount > 0){
             if(!document.getElementById(`${name}AmountDiv`)){
-                div = $(`<div class="resourceCounterDiv" id="${name}AmountDiv"><p id='${name}AmountP'>${displayNames[name]}</p><button onclick="whatIsThis('${displayNames[name]}')">?</button></div>`)
+                div = $(`<div class="resourceCounterDiv" id="${name}AmountDiv"><p id='${name}AmountP'>${displayNames[name]}</p><button onclick="whatIsThis('${name}')">?</button></div>`)
                 parent.append(div)
             }else{
                 $(`#${name}AmountP`).html(`${displayNames[name]}: ${amount}`)

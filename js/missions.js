@@ -1,14 +1,15 @@
 
-class questMission{
-    constructor(waves,enemies){
-        roundMAX = waves
-        this.enemies = enemies
-        this.curWave = 0;
-        this.curenemy = this.enemies[this.curWave]
-        
+class quest{
+    constructor(name, description, missionAttached){
+       this.name = name;
+       this.description= description;
+       this.missionAttached = missionAttached;
     }
-
-    nextWave(){
-        this.curWave++
+    launchMission(){
+        if(missionAttached){
+            
+        }
     }
 }
+
+let curiosUnlockingQuest = new quest("Unlock Curios", "Unlock the ability to use strange artifacts")

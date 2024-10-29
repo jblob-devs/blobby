@@ -318,12 +318,21 @@ if(!questActive){
     if(round % 5 == 0){
         createNewBossEnemy()
     }else{
+        if(beatFirst10Rounds == false){
+            createNewEnemy(new enemyCreation(
+                "Warped",
+                1,
+                false,
+                5000
+            ))
+        }else{
         createNewEnemy(new enemyCreation(
             "Warped",
             Math.ceil(round * 0.5),
             false,
             5000
         ))
+    }
     }
 }
 }

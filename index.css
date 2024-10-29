@@ -50,14 +50,15 @@
 }#BlobbySidebarDiv:hover{
   background-color:#F5DEB3;
   transition: ease 0.5s;
-}.inventoryTab{
+}.inventoryTab,.adventureTab{
   border:2px solid;
   padding:1vw;
-}.inventoryTab:hover{
+  transition: ease-in-out 0.5s;
+}.inventoryTab:hover,.adventureTab:hover{
   border:2px solid;
   padding:0.5vw;
   background-color: #efead4;
-  transition: ease 0.5s;
+  
 }#curios-grid-container{
   justify-content: center;
   display: grid;

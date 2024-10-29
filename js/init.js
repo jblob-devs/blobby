@@ -61,5 +61,6 @@ let gameData = {
    
    UnlockedCuriosList: [curios.smoothStone],
    curiosArr: [],
+   questsArr: []
    }
    

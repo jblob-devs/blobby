@@ -18,10 +18,6 @@
     position: absolute;
     top:20vh;
     left:3vw;
-}#toInventory{
-    position: absolute;
-    top:50vh;
-    left:3vw;
 }#frayedTreasureBagDiv, #patchedTreasureBagDiv{
     display: inline-block;
     padding: 4vw;
@@ -36,10 +32,18 @@
     font-weight: bold;
     pointer-events: none; 
     animation: float-up 1s forwards;
-  }#currentObjective{
+}#currentObjective{
    text-align: center;
-  }#openAdventureTab{
+}#toInventory{
+    position: absolute;
+    top:45vh;
+    left:3vw;
+}#openAdventureTab{
     position: absolute;
     top:40vh;
+    left:3vw;
+  }#clearSave{
+    position: absolute;
+    top:55vh;
     left:3vw;
   }

@@ -30,7 +30,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
                 <p>Squad</p>
             </button>
             </div>
-            <button id="openAugmentsMenu">Augments</button>
             
         <div id="stats">
             <p id="coinAMOUNT"></p>
@@ -64,16 +63,35 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         <div id="idleScreen">
             <img src="images/blobby.png"/>
             <p>Currently not adventuring...</p>
-            <p>Select a location in the adventure tab, or a quest to start!</p>
+            <p>Click adventure start a mission</p>
+            <br>
+            <p id="questMissionAvailable">You have quest missions available!</p>
         </div>
 
         <div id="AdventureSelectScreen">
             <div id="dailyMissionSelect"></div>
+
+            <div id="AdventureNavBar">
+                <a id="expeditionLink" class="adventureTab">Expeditions</a>
+                <a id="skirmishLink" class="adventureTab">Skirmishes</a>
+                <a id="questLink" class="adventureTab">Quests</a>
+            </div>
+
             <div id="locationAdventureSelect">
-                <h4>Locations</h4>
+                <h4>Expeditions</h4>
                 <p><i>Adventure in locations for materials specific to each place!</i></p>
             </div>
+            <div id="skirmishMissionSelect">
+                <h4>Skirmishes</h4>
+                <p><i>Skirmishes are rotating missions that offer a variety of rewards.</i></p>
+            </div>
+            <div id="questMissionSelect">
+                <h4>Quests</h4>
+                <p><i>Quest missions often contribute to progression!</i></p>
+            </div>
         </div>
+
+
     <button id="toShop">Shop</button>
     <button id="toInventory">Inventory</button>
     <button id="openAdventureTab">Adventure</button>
@@ -144,13 +162,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         <br>
         <button class="backHome">Back</button>
     </div>
-
-    <div id="augmentsDiv">
-        <h2>Augments</h2>
-        
-        <button class="backHome">Back</button>
-    </div>
-
     </body>
     <script src="js/create.js"></script>
     <script src="js/init.js"></script>

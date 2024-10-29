@@ -8,7 +8,7 @@ class tutorialEnemyCreation{
     constructor(name, level, atkspeed){
         this.name= name;
         this.level = level;
-        this.health=randNum(10,10 + (10*level))
+        this.health=randNum(10,1 + (10*level))
         this.curhealth= this.health;
         this.damage=randNum(level, 2*level);
         this.atkspeed = atkspeed; //milliseconds
@@ -22,7 +22,8 @@ class enemyCreation{
         this.name= name;
         this.level = level;
         this.boss= boss;
-        this.health=randNum(30,30 + (10*level));
+        this.difficultscalar = 2;
+        this.health=randNum(10*level,1 + (this.difficultscalar* 10*level));
         this.curhealth= this.health;
         this.damage=randNum(level, 2*level);
         this.atkspeed = atkspeed; //milliseconds

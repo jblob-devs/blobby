@@ -36,6 +36,11 @@ $("#augmentsDiv").hide()
 $("#blobbitsDiv").hide()
 $("#idleScreen").hide()
 $("#AdventureSelectScreen").hide()
+$("#locationAdventureSelect").hide()
+$("#questMissionSelect").hide()
+$("#skirmishMissionSelect").hide()
+
+$("#questMissionAvailable").hide()
 
 
 
@@ -130,6 +135,27 @@ $("#blobbitsLink").on("click",function(){
     $("#resourcesDiv").hide()
     
     $("#blobbitsDiv").show()
+})
+
+$("#expeditionLink").on("click",function(){
+    $("#skirmishMissionSelect").hide()
+    $("#questMissionSelect").hide()
+    
+    $("#locationAdventureSelect").show()
+    })
+    
+$("#skirmishLink").on("click",function(){
+    $("#locationAdventureSelect").hide()
+    $("#questMissionSelect").hide()
+        
+    $("#skirmishMissionSelect").show()
+})
+    
+$("#questLink").on("click",function(){
+    $("#skirmishMissionSelect").hide()
+    $("#locationAdventureSelect").hide()
+        
+    $("#questMissionSelect").show()
 })
 
 
