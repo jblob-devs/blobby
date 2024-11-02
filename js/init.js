@@ -32,7 +32,6 @@ let gameData = {
     currentObjective: "Clear Round 10",
     beatFirst10Rounds: false,
     tutorialEnemyBeat: false,
-    questActive: false,
    frayedTreasureBag: 0,
    patchedTreasureBag: 0,
    robustTreasureBag: 0,
@@ -61,6 +60,7 @@ let gameData = {
    
    UnlockedCuriosList: [curios.smoothStone],
    curiosArr: [],
-   questsArr: []
+   questsArr: [],
+   curQuest: null
    }
    

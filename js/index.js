@@ -119,7 +119,6 @@ function getItemOn(cur, side){
 
 function loadLocation(name){
 battleLocation = name
-$("#toAdventureSelectScreen").hide()
 $("#AdventureSelectScreen").hide()
 $("#battleDiv").show();
 if(name == "Sun Plains"){
@@ -314,7 +313,7 @@ function createNewRound(){
         Swal.fire({title:'You explored the Sun Plains!',text:"You can start a new adventure using the tab on the left!"})
     }
 
-if(!questActive){
+if(curQuest == null){
     if(round % 5 == 0){
         createNewBossEnemy()
     }else{
@@ -334,6 +333,12 @@ if(!questActive){
         ))
     }
     }
+}else{
+    if(!curQuest.completed){
+        console.log("e")
+        curQuest.waveDead()
+        createNewEnemy(curQuest.enemy)
+    }
 }
 }
 
@@ -344,6 +349,15 @@ function exitAdventureBattle(){
     Swal.fire({title:'Location Exploration Complete!'})
     currentObjective = ""
     calculateEndAdventureRewards(battleLocation,round)
+    round = 1
+}
+
+function exitBattle(optionalText){
+    battleActive = false
+    $("#battleDiv").hide();
+    $("#idleScreen").show()
+    Swal.fire({title:`${optionalText}`})
+    currentObjective = ""
     round = 1
 }
 

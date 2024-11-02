@@ -30,20 +30,21 @@ class enemyCreation{
     }
 }
 
-
-let warped = new enemyCreation(
+let enemies = {
+warped: new enemyCreation(
     "Warped",
     3,
     false,
     3000
-)
+),
 
-let corrupted = new enemyCreation(
+corrupted: new enemyCreation(
     "Corrupted",
     4,
     false,
     2000
 )
+}
 class basicBlobConstructor{
     constructor(health,damage,atkspeed){
         //actual stats, changes to this are permanent
