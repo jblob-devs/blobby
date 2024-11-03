@@ -31,19 +31,23 @@ class enemyCreation{
 }
 
 let enemies = {
-warped: new enemyCreation(
+"Warped": new enemyCreation(
     "Warped",
-    3,
+    1,
     false,
     3000
 ),
 
-corrupted: new enemyCreation(
+"Corrupted": new enemyCreation(
     "Corrupted",
-    4,
+    1,
     false,
     2000
 )
+}
+
+function Enemy(name, level){
+    return new enemyCreation(name, level, false, enemies[name].atkspeed)
 }
 class basicBlobConstructor{
     constructor(health,damage,atkspeed){

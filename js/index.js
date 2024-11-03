@@ -318,26 +318,21 @@ if(curQuest == null){
         createNewBossEnemy()
     }else{
         if(beatFirst10Rounds == false){
-            createNewEnemy(new enemyCreation(
-                "Warped",
-                1,
-                false,
-                5000
-            ))
+            createNewEnemy(Enemy("Warped",2))
         }else{
-        createNewEnemy(new enemyCreation(
-            "Warped",
-            Math.ceil(round * 0.5),
-            false,
-            5000
-        ))
+        createNewEnemy(
+            Enemy("Warped",Math.ceil(round * 0.5))
+            )
     }
     }
 }else{
+    createNewEnemy(curQuest.enemy)
     if(!curQuest.completed){
         console.log("e")
-        curQuest.waveDead()
-        createNewEnemy(curQuest.enemy)
+        if(!curQuest.waveDead()){
+            createNewEnemy(curQuest.enemy)
+        }
+        
     }
 }
 }
