@@ -310,7 +310,17 @@ function createNewRound(){
         $("#battleDiv").hide();
         $("#idleScreen").show()
         round = 1
-        Swal.fire({title:'You explored the Sun Plains!',text:"You can start a new adventure using the tab on the left!"})
+        Swal.fire({
+            title:'You explored the Sun Plains!',
+            text:"You can start a new adventure using the tab on the left!"
+        }).then((result) =>{
+            Swal.fire({
+                title:"Quests Available...",
+                text:"You can also launch progression quests from the adventure tab!"
+            })
+            questsArr.push(curiosUnlockingQuest)
+            questsArr.push(blobUnlockingQuest)
+        })
     }
 
 if(curQuest == null){
@@ -347,11 +357,11 @@ function exitAdventureBattle(){
     round = 1
 }
 
-function exitBattle(optionalText){
+function exitBattle(optionalTitle, optionalText){
     battleActive = false
     $("#battleDiv").hide();
     $("#idleScreen").show()
-    Swal.fire({title:`${optionalText}`})
+    Swal.fire({title:`${optionalTitle}`, text:`${optionalText}`,allowOutsideClick: false})
     currentObjective = ""
     round = 1
 }
