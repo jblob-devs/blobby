@@ -104,6 +104,7 @@ class curiosItem{
         this.icon = icon
         this.resonance = resonance
         this.mods = mods;
+        this.unlocked= false;
     }
 }
 

@@ -15,15 +15,12 @@ $("#enemyDisplay").on("click",function(){
 
 
 
-function firstTimeCurios(){
+function whatIsCurios(){
     Swal.fire({
         icon: "info",
         title: "Curios",
         text:"Curios are items that buff and provide special abilites to Blobby and it's team. Curios often interact with each other to become extra-powerful!"
-      }).then((result) => {
-        $("#firstTimeCuriosInfo").hide()
-        $("#editCuriosConfigBtn").show()
-      });
+      })
 }
 
 $("#shopDiv").hide()

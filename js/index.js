@@ -21,7 +21,9 @@ const displayNames ={
     slimeBlob: "Slime Blob",
     "SunPlains": "Sun Plains",
     "SlimyWood": "Slimy Woods",
-    sunPetals: "Sun petals"
+    sunPetals: "Sun petals",
+    'blobBits.blobby': 'Blobby blob bits',
+    'blobBits.slimeBlob': 'Slime blob bits'
 }
 
 let  = randEnemy = new enemyCreation(
@@ -59,7 +61,7 @@ function createCuriosGrid(){
         }
         const gridItem = $(`<div>${curiosname}</div>`)
         .addClass('curios-grid-item')
-        .attr('data-id',i+1)
+        .attr('data-id',i)
         .attr('data-row', row)
         .attr('data-col', col);
        
@@ -77,13 +79,22 @@ function createCuriosGrid(){
                 console.log(dropped)
                 let name = $(ui.helper).find('.curiosItemName').text()
                 
+                let equipped = false;
                 for(let i =0; i < UnlockedCuriosList.length; i++){
                     if(UnlockedCuriosList[i].name == name){
-                        curiosArr[gridItem.data("id")] = UnlockedCuriosList[i]
+                        if(curiosArr.findIndex(o => o.name ==  UnlockedCuriosList[i].name) == -1){
+                            curiosArr[gridItem.data("id")] = UnlockedCuriosList[i]
+                            equipped = true;
+                        }
                     }
                 }
-                
-                $(this).empty().html(name);
+                if(equipped){
+                $(this).empty().html(name)
+                }else{
+                    Toast.fire({
+                        text:'You already have this curios equipped!'
+                    })
+                }
             }
         })
         grid.append(gridItem)

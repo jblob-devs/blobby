@@ -8,6 +8,18 @@ class reward{
     }
 }
 
+function addReward(type,amount,alert){
+addRewardArray(type, amount)
+let out = sendRewardArray()
+if(alert){
+    Toast.fire({
+        icon: "info",
+        html: out
+    });
+}
+clearRewardArray()
+}
+
 function addRewardArray(type, amount){
     let added = false;
     for(let i = 0; i < rewardArray.length; i++){
@@ -26,6 +38,7 @@ function sendRewardArray(){
     let string = "Rewards Recieved <br>";
     for(let i = 0; i< rewardArray.length;i++){
         string += displayNames[rewardArray[i].name]  + ": " + rewardArray[i].amount + "<br>";
+        console.log(rewardArray[i].name)
         eval(rewardArray[i].name + "+=" + rewardArray[i].amount)
     }
     return string
@@ -117,6 +130,12 @@ function openTreasureBags(type){
     }
    
 
+}
+
+
+function unlockCurios(curios){
+    UnlockedCuriosList.push(curios)
+    curios.unlocked= true;
 }
 
 function whatIsThis(item){

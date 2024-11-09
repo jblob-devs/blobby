@@ -161,6 +161,12 @@ const statsUpdateLoop = setInterval(function(){
                     parent.append(div)
                 }
         }
+
+
+
+        //update skirmishes 
+
+        
     },100)
 
     
