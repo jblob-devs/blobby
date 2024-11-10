@@ -177,7 +177,7 @@ const Toast = Swal.mixin({
         Toast.fire({
             icon: "info",
             timer: toastTimer,
-            title: "Why don't you help Blobby out by tapping that warped enemy!"
+            title: "Why don't you help Blobby out by tapping that warped enemy! Tapping takes goo, which regenerates slowly"
           });
           //rest to default time
           toastTimer = 3000
@@ -185,8 +185,7 @@ const Toast = Swal.mixin({
   }
 
 function welcome(){
-    let save = localStorage.getItem('gameSave') ? JSON.parse(localStorage.getItem('gameSave')): null
-    if(save != null && save.beatFirst10Rounds == false){
+    if(gameData.beatFirst5Rounds == false){
         startTutorial()
         createCuriosGrid()
     }else{
@@ -202,7 +201,7 @@ function welcome(){
 }
 
   function welcome2(){
-    if(!beatFirst10Rounds){
+    if(!beatFirst5Rounds){
     Toast.fire({
         icon: "info",
         title: "Phew! Blobby will continue to attack enemies, but keep it safe by helping it out!"
@@ -239,10 +238,10 @@ function generateDamageNumbers(damage){
 function calcPlayerTapDamage(){
     let rand  = randNum(1,100)
     let dmg;
-    if(rand <= playerTap.critChance){
-        dmg =  Math.ceil(playerTap.damage * playerTap.critMultiplier);
+    if(rand <= player.critChance){
+        dmg =  Math.ceil(player.damage * player.critMultiplier);
     }else{
-        dmg = playerTap.damage
+        dmg = player.damage
     }
     return dmg
 }
@@ -285,6 +284,7 @@ function checkPlayerDeath(){
                firstDeath = false;
         round = round - (round % 10)
         createNewRound()
+
         }else{
             let msg = createRandomDeathMessage()
             Toast.fire({
@@ -292,8 +292,12 @@ function checkPlayerDeath(){
                 title: "-You died-",
                 text: msg
               });
+              if(curQuest){
+                exitBattleFail()
+              }else{
         round = round - (round % 10)
         createNewRound()
+              }
     }
     blobby.curhealth = blobby.health
 }
@@ -315,8 +319,8 @@ function createRandomDeathMessage(){
 }
 function createNewRound(){
 
-    if(beatFirst10Rounds == false && round == 10){
-        beatFirst10Rounds = true;
+    if(beatFirst5Rounds == false && round == 5){
+        beatFirst5Rounds = true;
         locationStats["SunPlains"].cleared = true
         battleActive = false
         currentObjective = ""
@@ -340,7 +344,7 @@ if(curQuest == null){
     if(round % 5 == 0){
         createNewBossEnemy()
     }else{
-        if(beatFirst10Rounds == false){
+        if(beatFirst5Rounds == false){
             createNewEnemy(Enemy("Warped",2))
         }else{
         createNewEnemy(
@@ -377,6 +381,15 @@ function exitBattle(optionalTitle, optionalText){
     Swal.fire({title:`${optionalTitle}`, text:`${optionalText}`,allowOutsideClick: false})
     currentObjective = ""
     round = 1
+}
+
+function exitBattleFail(){
+    battleActive = false
+    $("#battleDiv").hide();
+    $("#idleScreen").show()
+    Swal.fire({title:`Mission Failed`, text:`Maybe get better at the game...`,allowOutsideClick: false})
+    currentObjective = ""
+    curQuest = null;
 }
 
 function createNewEnemy(enemy){

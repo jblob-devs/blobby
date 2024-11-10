@@ -119,3 +119,11 @@ let nullItem = new curiosItem(
     {
     }
 )
+
+
+class reward{
+    constructor(name, amount){
+        this.name = name;
+        this.amount = amount;
+    }
+}

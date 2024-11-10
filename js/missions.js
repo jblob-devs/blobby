@@ -14,7 +14,7 @@ class Quest{
     }
     launchMission(){
         curQuest = this
-        
+        console.log(this.rewards)
         if(this.missionAttached){
             this.enemy = this.missionEnemies[round]
             preBattlePrep()
@@ -52,14 +52,8 @@ class Quest{
     }
 
     grantRewards(){
-        if(typeof this.rewards === 'function'){
-            this.rewards()
-        }else{
-            console.log('Reward unable to be granted; not a function')
-        }
+        addReward(this.rewards.name,this.rewards.amount,true)
     }
-
-    
-    
+  
     
 }

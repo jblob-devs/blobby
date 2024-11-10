@@ -21,7 +21,7 @@ const statsUpdateLoop = setInterval(function(){
     
 },100)
     const battleLoop = setInterval(function(){
-        if(battleActive && beatFirst10Rounds){
+        if(battleActive && beatFirst5Rounds){
             if(round > 5){
                 $("#extractFromAdventureButton").show()
             }else{

@@ -1,23 +1,28 @@
 
 let rewardArray = []
 
-class reward{
-    constructor(name, amount){
-        this.name = name;
-        this.amount = amount;
-    }
-}
 
 function addReward(type,amount,alert){
-addRewardArray(type, amount)
-let out = sendRewardArray()
-if(alert){
-    Toast.fire({
-        icon: "info",
-        html: out
-    });
-}
-clearRewardArray()
+    //if type is an object, its a curios
+    if(typeof type === 'object'){
+        UnlockedCuriosList.push(type)
+        if(alert){
+            Toast.fire({
+                icon: "info",
+                html: 'You unlocked a new curios!'
+            });
+        }
+    }else{
+        addRewardArray(type, amount)
+        let out = sendRewardArray()
+        if(alert){
+            Toast.fire({
+                icon: "info",
+                html: out
+            });
+        }
+        clearRewardArray()
+    }
 }
 
 function addRewardArray(type, amount){
