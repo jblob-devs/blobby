@@ -61,6 +61,10 @@ let gameData = {
    UnlockedCuriosList: [],
    curiosArr: [],
    questsArr: [],
-   curQuest: null
+   curQuest: null,
+   quests:{
+    curiosUnlockingQuest: new Quest("Unlock Curios", "Unlock the ability to use strange artifacts",true,"A powered up Culled has been roaming this area ... scare it off." ,"The corrupted dropped some sort of artifact ... maybe it can be used to make Blobby stronger?", ()=>unlockCurios(curios.smoothStone), [new Enemy("Warped",3), new Enemy("Warped",3), new Enemy("Warped",4), new Enemy("Corrupted",5)]),
+    blobUnlockingQuest: new Quest("Unlock Blobs", "Recruit Blobs to assist and powerup Blobby!",true,"Fragments of blobs, similar to blobby, are being guarded by the Culled. Retrieve them!","Continue collected blob bits to recruit new blobs for your squad!",()=>addReward('blobBits.slimeBlob',10,true), [new Enemy("Warped",5), new Enemy("Warped",3),new Enemy("Corrupted",6)]),
+   }
    }
    

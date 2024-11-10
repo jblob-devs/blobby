@@ -150,16 +150,16 @@ const statsUpdateLoop = setInterval(function(){
             parent.innerHTML = ''
             let name = questsArr[i].name
             let nospacename = questsArr[i].name.replace(/\s+/g,"")
-                if(!document.getElementById(`AVAILABLEQUEST${name}Div`)){
-                    div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${name}Div"><p>${questsArr[i].name}</p><p><i>${questsArr[i].description}<i></p><button id= "${nospacename}launchMission" onclick="">Launch</button></div>`)
+                if($(`#AVAILABLEQUEST${nospacename}Div`).length == 0 && !questsArr[i].completed){
+                    div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${questsArr[i].name}</p><p><i>${questsArr[i].description}<i></p><button id= "${nospacename}launchMission">Launch</button></div>`)
                     div.find(`#${nospacename}launchMission`).click((function (quest) {
                         return function () {
-                            //console.log(typeof quest.launchMission)
-                            quest.launchMission();
+                           quest.launchMission();
                         };
                     })(questsArr[i]));
                     parent.append(div)
                 }
+             
         }
 
 

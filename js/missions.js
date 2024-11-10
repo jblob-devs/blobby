@@ -1,5 +1,5 @@
 
-class quest{
+class Quest{
     constructor(name, description, missionAttached, launchtext, completiontext, rewards, missionEnemies = []){
        this.name = name;
        this.description= description;
@@ -10,6 +10,7 @@ class quest{
        this.completiontext = completiontext
        this.missionEnemies = missionEnemies
        this.rewards = rewards;
+
     }
     launchMission(){
         curQuest = this
@@ -30,6 +31,7 @@ class quest{
         }
         
     }
+
     waveDead(){
         if(round >= this.missionEnemies.length){
             console.log(round + " + " + this.missionEnemies.length)
@@ -37,6 +39,8 @@ class quest{
             for(let i = 0; i < questsArr.length; i++){
                 if(questsArr[i] == curQuest){
                     questsArr.splice(i, 1)
+                    let noname = this.name.replace(/\s+/g,"")
+                    $(`#AVAILABLEQUEST${noname}Div`).remove()
                 }
             }
             curQuest = null
@@ -46,6 +50,7 @@ class quest{
         }
         return false
     }
+
     grantRewards(){
         if(typeof this.rewards === 'function'){
             this.rewards()
@@ -53,7 +58,8 @@ class quest{
             console.log('Reward unable to be granted; not a function')
         }
     }
-}
 
-let curiosUnlockingQuest = new quest("Unlock Curios", "Unlock the ability to use strange artifacts",true,"A powered up Culled has been roaming this area ... scare it off." ,"The corrupted dropped some sort of artifact ... maybe it can be used to make Blobby stronger?", ()=>unlockCurios(curios.smoothStone), [Enemy("Warped",3), Enemy("Warped",3), Enemy("Warped",4), Enemy("Corrupted",5)])
-let blobUnlockingQuest = new quest("Unlock Blobs", "Recruit Blobs to assist and powerup Blobby!",true,"Fragments of blobs, similar to blobby, are being guarded by the Culled. Retrieve them!","Continue collected blob bits to recruit new blobs for your squad!",()=>addReward('blobBits.slimeBlob',10,true), [Enemy("Warped",5), Enemy("Warped",3), Enemy("Corrupted",6)])
+    
+    
+    
+}

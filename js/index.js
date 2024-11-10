@@ -1,6 +1,8 @@
 let mouseX;
 let mouseY;
 let letsave = false;
+let questList = [quests.curiosUnlockingQuest,quests.blobUnlockingQuest]
+
 
 randEnemy = new enemyCreation(
     "warped",
@@ -329,8 +331,8 @@ function createNewRound(){
                 title:"Quests Available...",
                 text:"You can also launch progression quests from the adventure tab!"
             })
-            questsArr.push(curiosUnlockingQuest)
-            questsArr.push(blobUnlockingQuest)
+            questsArr.push(quests.curiosUnlockingQuest)
+            questsArr.push(quests.blobUnlockingQuest)
         })
     }
 

@@ -45,5 +45,9 @@ function mapGameDataToGlobals() {
         }
         }
     }
+
+
+   
+
 }
 mapGameDataToGlobals();
