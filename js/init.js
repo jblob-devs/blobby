@@ -19,6 +19,14 @@ let curios={
             healthPercentageBuff: curiosModList(10,"Health", "buff", "%")
         }
     ),
+    mossyStone: new curiosItem(
+        'Mossy Stone', 
+        'sigma', //icon
+        'Harmonic',
+        {
+            damagePercentageBuff: curiosModList(10,"Base Damage", "buff", "%")
+        }
+    ),
 
 }
 
