@@ -8,6 +8,7 @@
         <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
 "></script>
+<script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     </head>
     <body>
@@ -31,17 +32,20 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
             </button>
             </div>
             
-        <div id="stats">
-            <p id="coinAMOUNT"></p>
-            <p id="roundNumber"></p>
-            <p id="location"></p>
-        </div>
+            <div id="coinContainer">
+                <p id="coinAMOUNT"></p>
+            </div>
+            
+            <div id="stats">
+                <p id="roundNumber"></p>
+                <p id="location"></p>
+            </div>
         <div id="battleDiv">
         <div id="basicBlobDisplayDiv">
         <img src= "images/blobby.png" height="auto" width="90vw" id="basicBlobDisplay" />
         <div class="progress-container">
-        <div class="progress-bar" id="blobHealthbar">
             <span class="progressBarText" id="blobHealthText">ee</span>
+        <div class="progress-bar" id="blobHealthbar">
         </div>
     </div>
         
@@ -51,8 +55,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
             <p id="enemyStatsDisplay">e</p>
         <img src= "images/warped.png" height="200vh" width="auto" id="enemyDisplay" />
             <div class="progress-container">
+                <span class="progressBarText" id="enemyHealthText">ee</span>
                 <div class="progress-bar" id="enemyHealthbar">
-                    <span class="progressBarText" id="enemyHealthText">ee</span>
+                    
                 </div>
                 
             </div>    
@@ -92,7 +97,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         </div>
 
 
-    <button id="toShop">Shop</button>
+    <button id="toShop">
+        <i class="fas fa-store"></i> Shop
+    </button>
     <button id="toInventory">Inventory</button>
     <button id="openAdventureTab">Adventure</button>
     <button id="clearSave" onclick="clearSave()">Clear Save</button>

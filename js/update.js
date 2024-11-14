@@ -7,19 +7,28 @@ const gameSaveUpdate = setInterval(function(){
     }
 },100)
 
-const statsUpdateLoop = setInterval(function(){
-    //update jelly
-    $("#coinAMOUNT").html("Jelly: " + jelly)
-    $("#roundNumber").html("Round: " + round)
-    $("#location").html(battleLocation)
 
-    if(questsArr.length > 0){
-        $("#questMissionAvailable").show()
-    }else{
-        $("#questMissionAvailable").hide()
+const statsUpdateLoop = setInterval(function(){
+    // Update coin amount (always visible)
+    $("#coinAMOUNT").html("Jelly: " + jelly);
+
+    if (battleActive) {
+        // Update and show stats during battle
+        $("#roundNumber").html("Round: " + round);
+        $("#location").html("Location: " + battleLocation);
+        $("#stats").removeClass("hidden");
+    } else {
+        // Hide stats when not in battle
+        $("#stats").addClass("hidden");
     }
-    
-},100)
+
+    // Show or hide quest mission availability
+    if (questsArr.length > 0) {
+        $("#questMissionAvailable").show();
+    } else {
+        $("#questMissionAvailable").hide();
+    }
+}, 100);
     const battleLoop = setInterval(function(){
         if(battleActive && beatFirst5Rounds){
             if(round > 5){

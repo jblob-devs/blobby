@@ -220,3 +220,17 @@ function formatCuriosModText(mod){
     str += mod[0] + mod[3] + "<br>"
     return str
 }
+
+// Example in onclick.js
+$('#openAdventureTab').on('click', () => {
+    if (battleActive) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Cannot Start Adventure',
+            text: "You're already adventuring!",
+        });
+    } else {
+        UIManager.showScreen('ADVENTURE');
+        $(UI_ELEMENTS.IDLE).hide();
+    }
+});

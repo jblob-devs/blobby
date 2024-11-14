@@ -282,7 +282,7 @@ function checkPlayerDeath(){
                 title: "Oh no! Blobby died! Don't worry, you'll just be returned to the start of each round interval!"
               });
                firstDeath = false;
-        round = round - (round % 10)
+        round = round - (round % 10) + 1
         createNewRound()
 
         }else{
@@ -295,7 +295,7 @@ function checkPlayerDeath(){
               if(curQuest){
                 exitBattleFail()
               }else{
-        round = round - (round % 10)
+        round = round - (round % 10) + 1
         createNewRound()
               }
     }
