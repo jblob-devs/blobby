@@ -198,4 +198,7 @@ button:hover {
 #location {
     font-style: italic;
     color: #666;
+}#googaugecontainer{
+    width: 50%;
+    margin:0 auto;
 }

@@ -1,12 +1,8 @@
 
-
 const gameSaveUpdate = setInterval(function(){
-    if(letsave){
     mapGameDataToGlobals()
     saveGame()
-    }
-},100)
-
+},100)  
 
 const statsUpdateLoop = setInterval(function(){
     // Update coin amount (always visible)
@@ -83,6 +79,16 @@ const statsUpdateLoop = setInterval(function(){
         checkPlayerDeath()
         }else{
             
+        }
+    },100)
+
+    const updateGooGauge = setInterval(function(){
+        if(battleActive){
+            var googaugebar = document.getElementById("googaugebar")
+            var googaugetext = document.getElementById("googaugetext")
+            let percentage = (player.gooGauge/player.gooGaugeStat)*100
+            googaugebar.style.width = percentage + '%'
+            googaugetext.textContent = player.gooGauge + " goo";
         }
     },100)
 

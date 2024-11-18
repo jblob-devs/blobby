@@ -94,7 +94,7 @@ function recreateQuestsArray(data){
         )
         : null;  // Default to null if rewards is missing
 
-    console.log(reward)
+    //console.log(reward)
     const missionEnemies = data.missionEnemies.map(enemyData => new Enemy(enemyData.name, enemyData.level));
 
     return new Quest(

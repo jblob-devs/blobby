@@ -185,19 +185,19 @@ const Toast = Swal.mixin({
   }
 
 function welcome(){
-    if(gameData.beatFirst5Rounds == false){
-        startTutorial()
-        createCuriosGrid()
-    }else{
+    loadGame()
+    if(gameData.beatFirst5Rounds){
         loadGame()
         createCuriosGrid()
         applyCuriosConfig(curiosArr)
         battleActive = false;
         $("#battleDiv").hide();
         $("#idleScreen").show()
+    }else{
+        startTutorial()
+        createCuriosGrid()
     }
-    letsave=  true;
-    
+ 
 }
 
   function welcome2(){
@@ -446,5 +446,6 @@ function createRandomBossReward(){
 //in a document.ready so the function only runs once all elements are loaded
 $( document ).ready(function() {
     welcome()
+    
 });
 
