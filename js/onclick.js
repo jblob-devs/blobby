@@ -219,7 +219,7 @@ function formatCuriosModText(mod){
     if(mod[2] == "buff"){
         str += ": +"
     }else{
-        str += ": -"
+        str += ": "
     }
     str += mod[0] + mod[3] + "<br>"
     return str

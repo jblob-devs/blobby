@@ -25,18 +25,31 @@ const statsUpdateLoop = setInterval(function(){
         $("#questMissionAvailable").hide();
     }
 }, 100);
+
+
     const battleLoop = setInterval(function(){
-        if(battleActive && beatFirst5Rounds){
-            if(round > 5){
-                $("#extractFromAdventureButton").show()
+        if(battleActive){
+            //extract button
+            if(beatFirst5Rounds && curQuest == null){
+                if(round > 5){
+                    $("#extractFromAdventureButton").show()
+                }else{
+                    $("#extractFromAdventureButton").hide()
+                }
+                
             }else{
                 $("#extractFromAdventureButton").hide()
             }
-            
         }else{
             $("#extractFromAdventureButton").hide()
         }
-    })
+    },100)
+
+    const gooGaugeRegen = setInterval(function(){
+        if(blobby.gooGauge < blobby.gooGaugeMax){
+            blobby.gooGauge += blobby.gooRegenPerRate
+        }
+    },blobby.gooRegenRate)
     
     const basicBlobAttackLoop = setInterval(function(){
         if(battleActive){
@@ -86,9 +99,9 @@ const statsUpdateLoop = setInterval(function(){
         if(battleActive){
             var googaugebar = document.getElementById("googaugebar")
             var googaugetext = document.getElementById("googaugetext")
-            let percentage = (player.gooGauge/player.gooGaugeStat)*100
+            let percentage = (blobby.gooGauge/blobby.gooGaugeMax)*100
             googaugebar.style.width = percentage + '%'
-            googaugetext.textContent = player.gooGauge + " goo";
+            googaugetext.textContent = blobby.gooGauge + " goo";
         }
     },100)
 
@@ -190,7 +203,8 @@ const statsUpdateLoop = setInterval(function(){
         $("#blobbyDMGp").html("damage: " + blobby.damage)
         $("#blobbyATKSPDp").html("attack speed: " + blobby.atkspeed)
     
-        //update curios grid
+      $("#gooGaugeMaxDisplay").html('Goo Gauge Max: ' + player.gooGaugeStat)
+      $("#gooGaugeRegenDisplay").html('Regens ' + player.gooRegenPerRate + " goo per " + (player.gooRegenRate / 1000) + "s ")
         
         
     },100)

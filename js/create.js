@@ -55,6 +55,17 @@ class basicBlobConstructor{
         this.healthSTAT = health
         this.damageSTAT = damage
         this.attackspeedSTAT = atkspeed
+        this.gooGaugeMaxSTAT = 10
+        this.gooRegenPerRateSTAT= 1,
+        this.gooRegenRateSTAT = 1000,
+
+
+        this.gooGauge = this.gooGaugeMaxSTAT,
+        this.gooGaugeMax = this.gooGaugeMaxSTAT,
+        this.gooRegenPerRate= this.gooRegenPerRateSTAT,
+        this.gooRegenRate = this.gooRegenRateSTAT,
+        
+
         
 
 
@@ -74,6 +85,9 @@ class basicBlobConstructor{
         this.health = this.healthSTAT
         this.damage = this.damageSTAT
         this.atkspeed = this.attackspeedSTAT
+        this.gooGaugeMax = this.gooGaugeMaxSTAT,
+        this.gooRegenPerRate= this.gooRegenPerRateSTAT,
+        this.gooRegenRate = this.gooRegenRateSTAT
     }
 
     applyCurios(curiosApplicationArray){
@@ -81,16 +95,27 @@ class basicBlobConstructor{
             if(curios == null){
             }else{
                 //[0] gets the number value of the mods 
-                if(curios.mods.baseDMGBuff) this.damage += curios.mods.baseDMGBuff[0]
-                if(curios.mods.damagePercentageBuff) this.damage += Math.floor(this.damage * curios.mods.damagePercentageBuff[0]/100)
+                if(curios.mods.baseDMG) this.damage += curios.mods.baseDMG[0]
+                if(curios.mods.damagePercentage) this.damage += Math.floor(this.damage * curios.mods.damagePercentage[0]/100)
     
-                if(curios.mods.baseHPBuff) this.health += curios.baseHPBuff[0]
-                if(curios.mods.healthPercentageBuff) this.health += Math.floor(this.health * curios.mods.healthPercentageBuff[0]/100)
+                if(curios.mods.baseHP) this.health += curios.mods.baseHP[0]
+                if(curios.mods.healthPercentage) this.health += Math.floor(this.health * curios.mods.healthPercentage[0]/100)
+            
+                if(curios.mods.gooMax) this.gooGaugeMax += curios.mods.gooMax[0]
+                if(curios.mods.gooRegenRate) this.gooRegenRate += curios.mods.gooRegenRate[0]
+                if(curios.mods.gooRegenPerRate) this.gooRegenPerRate += curios.mods.gooRegenPerRate[0]
             }
            
         })
+        if(this.health <= 0){
+            this.health = 1
+        }
+        if(this.damage < 0){
+            this.damage = 0
+        }
     }
 }
+
 
 var curiosGrid={
     rows: 2,

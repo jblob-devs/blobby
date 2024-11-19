@@ -9,14 +9,28 @@ Entropic
 */
 
 
+/*
+
+buffs 
+
+
+baseDMG
+damagePercentage
+baseHP
+healthPercentage
+gooMax
+gooRegenRate
+gooRegenPerRate
+*/
+
 let curios={
     smoothStone: new curiosItem(
         'Smooth Stone', 
         'sigma', //icon
         'Syntactic',
         {
-            baseDMGBuff: curiosModList(2,"Base Damage", "buff", ""),
-            healthPercentageBuff: curiosModList(10,"Health", "buff", "%")
+            baseDMG: curiosModList(2,"Base Damage", "buff", ""),
+            healthPercentage: curiosModList(10,"Health", "buff", "%")
         }
     ),
     mossyStone: new curiosItem(
@@ -24,7 +38,16 @@ let curios={
         'sigma', //icon
         'Harmonic',
         {
-            damagePercentageBuff: curiosModList(10,"Base Damage", "buff", "%")
+            damagePercentage: curiosModList(10,"Base Damage", "buff", "%")
+        }
+    ),
+    heavyStone: new curiosItem(
+        'Heavy Stone', 
+        'sigma', //icon
+        'Harmonic',
+        {
+            baseDMG: curiosModList(-5,"Base Damage", "nerf", ""),
+            baseHP: curiosModList(20,"Base HP", "buff", ""),
         }
     ),
 
@@ -50,8 +73,6 @@ let gameData = {
        damageType: 'physical',
        critChance: 10,
        critMultiplier: 1.2,
-       gooGauge: 10,
-       gooGaugeStat:10
    },
    blobBits: {
        blobby: 0,

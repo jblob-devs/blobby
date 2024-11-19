@@ -63,4 +63,9 @@
     padding: 10px;
     font-style: italic;
     color: #555;
+}#blobbyEssentialStatsDisplay, #gooGaugeStatsDisplay{
+    display: inline-block;
+    padding: 4vw;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }

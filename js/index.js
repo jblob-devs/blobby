@@ -210,9 +210,14 @@ function welcome(){
   }
 
 function tapEnemy(){
-    let dmgDone  =calcPlayerTapDamage()
-    randEnemy.curhealth-= dmgDone
-    generateDamageNumbers(dmgDone)
+    if(blobby.gooGauge > 0 ){
+        blobby.gooGauge--
+        let dmgDone  =calcPlayerTapDamage()
+        randEnemy.curhealth-= dmgDone
+        generateDamageNumbers(dmgDone)
+    }else{
+        Toast.fire({text:'Not enough goo!'})
+    }
     
 }
 
