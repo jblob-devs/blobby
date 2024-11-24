@@ -176,13 +176,13 @@ const statsUpdateLoop = setInterval(function(){
             let div;
             let parent = $("#questMissionSelect")
             parent.innerHTML = ''
-            let name = questsArr[i].name
-            let nospacename = questsArr[i].name.replace(/\s+/g,"")
+            let name = questsArr[i]
+            let nospacename = name.replace(/\s+/g,"")
                 if($(`#AVAILABLEQUEST${nospacename}Div`).length == 0 && !questsArr[i].completed){
-                    div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${questsArr[i].name}</p><p><i>${questsArr[i].description}<i></p><button id= "${nospacename}launchMission">Launch</button></div>`)
-                    div.find(`#${nospacename}launchMission`).click((function (quest) {
+                    div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}<i></p><button id= "${nospacename}launchMission">Launch</button></div>`)
+                    div.find(`#${nospacename}launchMission`).click((function (questname) {
                         return function () {
-                           quest.launchMission();
+                           quest[questname].launchMission();
                         };
                     })(questsArr[i]));
                     parent.append(div)
@@ -203,8 +203,8 @@ const statsUpdateLoop = setInterval(function(){
         $("#blobbyDMGp").html("damage: " + blobby.damage)
         $("#blobbyATKSPDp").html("attack speed: " + blobby.atkspeed)
     
-      $("#gooGaugeMaxDisplay").html('Goo Gauge Max: ' + player.gooGaugeStat)
-      $("#gooGaugeRegenDisplay").html('Regens ' + player.gooRegenPerRate + " goo per " + (player.gooRegenRate / 1000) + "s ")
+      $("#gooGaugeMaxDisplay").html('Goo Gauge Max: ' + blobby.gooGaugeMax)
+      $("#gooGaugeRegenDisplay").html('Regens ' + blobby.gooRegenPerRate + " goo per " + (blobby.gooRegenRate / 1000) + "s ")
         
         
     },100)

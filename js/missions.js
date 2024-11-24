@@ -14,7 +14,7 @@ class Quest{
     }
     launchMission(){
         curQuest = this
-        console.log(this.rewards)
+        //console.log(this.rewards)
         if(this.missionAttached){
             this.enemy = this.missionEnemies[round]
             preBattlePrep()
@@ -37,21 +37,21 @@ class Quest{
             console.log(round + " + " + this.missionEnemies.length)
             this.completed = true;
             for(let i = 0; i < questsArr.length; i++){
-                if(questsArr[i] == curQuest){
+                if(quest[questsArr[i]] == curQuest){
                     questsArr.splice(i, 1)
                     let noname = this.name.replace(/\s+/g,"")
                     $(`#AVAILABLEQUEST${noname}Div`).remove()
                 }
             }
             curQuest = null
-            exitBattle("Quest Complete!",this.completiontext)
-            this.grantRewards()
+            exitBattle("Quest Complete!",this.completiontext,this)
             return true
         }
         return false
     }
 
     grantRewards(){
+        console.log(this.rewards)
         addReward(this.rewards.name,this.rewards.amount,true)
     }
   

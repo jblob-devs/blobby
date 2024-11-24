@@ -1,7 +1,7 @@
 let mouseX;
 let mouseY;
 let letsave = false;
-let questList = [quests.curiosUnlockingQuest,quests.blobUnlockingQuest]
+let questList = []
 
 
 randEnemy = new enemyCreation(
@@ -69,7 +69,8 @@ function createCuriosGrid(){
        
   
         gridItem.on('click',function(){
-            
+            //console.log(gridItem.innerHTML)
+            //curiosArr.indexOf(gridItem.innerHTML)
         })
        
         gridItem.droppable({
@@ -340,8 +341,8 @@ function createNewRound(){
                 title:"Quests Available...",
                 text:"You can also launch progression quests from the adventure tab!"
             })
-            questsArr.push(quests.curiosUnlockingQuest)
-            questsArr.push(quests.blobUnlockingQuest)
+            questsArr.push("UnlockCurios")
+            questsArr.push("UnlockBlobs")
         })
     }
 
@@ -379,11 +380,14 @@ function exitAdventureBattle(){
     round = 1
 }
 
-function exitBattle(optionalTitle, optionalText){
+function exitBattle(optionalTitle, optionalText,quest){
     battleActive = false
     $("#battleDiv").hide();
     $("#idleScreen").show()
     Swal.fire({title:`${optionalTitle}`, text:`${optionalText}`,allowOutsideClick: false})
+    .then((result) =>{
+        quest.grantRewards()
+    })
     currentObjective = ""
     round = 1
 }
