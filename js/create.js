@@ -22,7 +22,7 @@ class enemyCreation{
         this.name= name;
         this.level = level;
         this.boss= boss;
-        this.difficultscalar = 2;
+        this.difficultscalar = 1;
         this.health=randNum(10*level,1 + (this.difficultscalar* 10*level));
         this.curhealth= this.health;
         this.damage=randNum(level, 2*level);

@@ -104,7 +104,7 @@ button:hover {
     transition: ease 0.5s;
 }
 
-.inventoryTab, .adventureTab {
+.inventoryTab, .adventureTab, .riftTab {
     border: 2px solid #333;
     padding: 10px 20px;
     transition: all 0.3s ease;
@@ -114,7 +114,7 @@ button:hover {
     border-radius: 6px;
 }
 
-.inventoryTab:hover, .adventureTab:hover {
+.inventoryTab:hover, .adventureTab:hover, .riftTab:hover {
     background-color: #efead4;
     transform: translateY(-2px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -201,4 +201,13 @@ button:hover {
 }#googaugecontainer{
     width: 50%;
     margin:0 auto;
+}#rotationPolyhedronDiv{
+    display: inline-block;
+    padding: 4vw;
+    margin:left;
+    width:40vw;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }

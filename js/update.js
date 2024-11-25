@@ -4,6 +4,11 @@ const gameSaveUpdate = setInterval(function(){
     saveGame()
 },100)  
 
+const tutorialLoop = setInterval(function(){
+    if(beatFirst5Rounds == false){
+        $("#NavSideBar").hide();
+    }
+},1000)
 const statsUpdateLoop = setInterval(function(){
     // Update coin amount (always visible)
     $("#coinAMOUNT").html("Jelly: " + jelly);
@@ -149,7 +154,8 @@ const statsUpdateLoop = setInterval(function(){
                 div = $(`<div class="resourceCounterDiv" id="${name}AmountDiv"><p id='${name}AmountP'>${displayNames[name]}</p><button onclick="whatIsThis('${name}')">?</button></div>`)
                 parent.append(div)
             }else{
-                $(`#${name}AmountP`).html(`${displayNames[name]}: ${amount}`)
+                let display = displayNames["materials." + name.toString()]
+                $(`#${name}AmountP`).html(`${display}: ${amount}`)
             }
         }
     }
@@ -208,8 +214,30 @@ const statsUpdateLoop = setInterval(function(){
         
         
     },100)
-    /*
-    const updateShop = setInterval(function(){
-    $("#rotatingEssenceOffers")
-    },100)
-    */
+
+    //in seconds 
+    
+    const updateBazaar = setInterval(function(){
+        if(refreshtimer == 0){
+            polyhedronOfferName = rotatePolyhedronOffer()
+            refreshtimer = 10;
+        }
+    $("#rotationPolyhedronSlot").html(`<p>${polyhedronOfferName}</p><p><i>Refreshes in: ${refreshtimer}</i></p>`)
+    refreshtimer--
+    },1000)
+
+
+function rotatePolyhedronOffer(){
+    let rand = randNum(1,3)
+    let name  = ""
+    if(rand == 1){
+        name = "plain polyhedron"
+    }else if(rand == 2){
+        name = "rounded polyhedron"
+    }else if(rand == 3){
+        name = "fermented polyhedron"
+    }
+
+    return name
+}
+    

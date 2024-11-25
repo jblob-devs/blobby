@@ -23,7 +23,7 @@ function whatIsCurios(){
       })
 }
 
-$("#shopDiv").hide()
+$("#riftDiv").hide()
 $("#blobbyCharacterScreen").hide()
 $("#inventoryDiv").hide()
 $("#resourcesDiv").hide()
@@ -36,14 +36,17 @@ $("#AdventureSelectScreen").hide()
 $("#locationAdventureSelect").hide()
 $("#questMissionSelect").hide()
 $("#skirmishMissionSelect").hide()
-
 $("#questMissionAvailable").hide()
 
+$("#gatewayDiv").hide()
+$("#bazaarDiv").hide()
+$("#latticeDiv").hide()
+        
 
 
-$("#toShop").on("click", function(){
+$("#toRift").on("click", function(){
     $("#playscreen").slideUp()
-    $("#shopDiv").slideDown()
+    $("#riftDiv").slideDown()
 })
 
 $("#openAdventureTab").on("click",function(){
@@ -89,12 +92,7 @@ $("#closeSideBarButton").on("click",function(){
 
 //back home
 $(".backHome").on("click",function(){
-    $("#shopDiv").slideUp()
-    $("#blobbyCharacterScreen").slideUp()
-    $("#inventoryDiv").slideUp()
-    $("#augmentsDiv").slideUp()
-    $("#AdventureSelectScreen").slideUp()
-
+    $('div').filter(':visible').hide();
 
     $("#playscreen").slideDown()
 
@@ -111,6 +109,7 @@ $("#BlobbySidebarDiv").on("click",function(){
 //open inventory
 $('#toInventory').on("click",function(){
     $("#inventoryDiv").slideDown()
+    $("#InventoryNavBar").show()
 
     $("#playscreen").slideUp()
 })
@@ -158,6 +157,29 @@ $("#questLink").on("click",function(){
         
     $("#questMissionSelect").show()
 })
+
+
+$("#bazaarLink").on("click",function(){
+    $("#gatewayDiv").hide()
+    $("#latticeDiv").hide()
+    
+    $("#bazaarDiv").show()
+    })
+    
+$("#gatewayLink").on("click",function(){
+    $("#bazaarDiv").hide()
+    $("#latticeDiv").hide()
+        
+    $("#gatewayDiv").show()
+})
+    
+$("#latticeLink").on("click",function(){
+    $("#gatewayDiv").hide()
+    $("#bazaarDiv").hide()
+        
+    $("#latticeDiv").show()
+})
+
 
 
 $("#openAugmentsMenu").on("click",function(){

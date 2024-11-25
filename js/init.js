@@ -54,7 +54,7 @@ let curios={
         'sigma', //icon
         'Harmonic',
         {
-            gooRegenRate: curiosModList(2,"Goo Regen Rate", "buff", ""),
+            gooRegenPerRate: curiosModList(2,"Goo Regenerated", "buff", ""),
             gooMax: curiosModList(15,"Goo Max", "buff", ""),
         }
     ),
@@ -101,6 +101,9 @@ let gameData = {
    curiosArr: [],
    questsArr: [],
    curQuest: null,
+
+   refreshtimer: 10,
+    polyhedronOfferName: 'plain polyhedron'
    
 }
 

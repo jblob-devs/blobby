@@ -4,7 +4,16 @@ let rewardArray = []
 
 function addReward(type,amount,alert){
     //if type is an object, its a curios
+    console.log(type)
     if(typeof type === 'object'){
+        let exist = false;
+        for(let i = 0; i < UnlockedCuriosList.length; i++){
+            if(UnlockedCuriosList[i].name == type.name){
+                exist = true;
+                break;
+            }
+        }
+        if(!exist){
         UnlockedCuriosList.push(type)
         if(alert){
             Toast.fire({
@@ -12,6 +21,15 @@ function addReward(type,amount,alert){
                 html: 'You unlocked a new curios!'
             });
         }
+    }else{
+        if(alert){
+            Toast.fire({
+                icon: "info",
+                html: 'You recieved a duplicate curios, it has been converted into 10 Salvage Shards'
+            });
+        }
+        materials.salvageShards += 10
+    }
     }else{
         addRewardArray(type, amount)
         let out = sendRewardArray()

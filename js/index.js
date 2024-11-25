@@ -23,7 +23,7 @@ const displayNames ={
     slimeBlob: "Slime Blob",
     "SunPlains": "Sun Plains",
     "SlimyWood": "Slimy Woods",
-    sunPetals: "Sun petals",
+    'materials.sunPetals': "Sun petals",
     'blobBits.blobby': 'Blobby blob bits',
     'blobBits.slimeBlob': 'Slime blob bits'
 }
@@ -343,6 +343,7 @@ function createNewRound(){
             })
             questsArr.push("UnlockCurios")
             questsArr.push("UnlockBlobs")
+            $("#NavSideBar").show()
         })
     }
 

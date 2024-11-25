@@ -12,23 +12,34 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
     </head>
     <body>
      
-        <div id="blobSideBar" class="sidebar">
-            <h1>Squad</h1>
-            <div id="BlobbySidebarDiv">
-                <img height = "auto" width = "100vw" src="images/blobby.png"/>
-                <p>Blobby</p>
-            </div>
-            <button id="closeSideBarButton">X</button>
-        </div>
+       
 
 
         <div id="playscreen">
+            <div id="blobSideBar" class="sidebar">
+                <h1>Squad</h1>
+                <div id="BlobbySidebarDiv">
+                    <img height = "auto" width = "100vw" src="images/blobby.png"/>
+                    <p>Blobby</p>
+                </div>
+                <button id="closeSideBarButton">X</button>
+            </div>
             <h2>jblob blobby</h2>
-            <div id="squadSideBar">
+            <div id="NavSideBar">
+
             <button id="openSideBarButton">
                 <img id="openSideBarImg" height = "auto" width = "80vw" src="images/blobby.png" />
                 <p>Squad</p>
             </button>
+
+            <button id="toRift">
+                <i class="fas fa-store"></i> Rift
+            </button>
+
+            <button id="toInventory">Inventory</button>
+            <button id="openAdventureTab">Adventure</button>
+            <button id="clearSave" onclick="clearSave()">Clear Save</button>
+
             </div>
             
             <div id="coinContainer">
@@ -99,22 +110,40 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js
         </div>
 
 
-    <button id="toShop">
-        <i class="fas fa-store"></i> Shop
-    </button>
-    <button id="toInventory">Inventory</button>
-    <button id="openAdventureTab">Adventure</button>
-    <button id="clearSave" onclick="clearSave()">Clear Save</button>
+    
 </div>
 
 
-    <div id="shopDiv">
-        <h1>Shop</h1>
-        <i>The roving merchant offers you their wares...Buying them is not a matter of if, but a matter of when </i>
-        <h3>Rotating Essence Offers</h3>
-        <div id="rotatingEssenceOffers">
+    <div id="riftDiv">
+        <h2>The Rift</h2>
+        <p><i>The rift sits in between ages and dimension, nestled away from prying extraplanar entities.</i></p>
+        <br>
+        <a id="bazaarLink" class="riftTab">Bazaar</a>
+            <a id="gatewayLink" class="riftTab">Gateway</a>
+            <a id="latticeLink" class="riftTab">The Lattice</a>
+        <div id="bazaarDiv">
+            <h1>Bazaar</h1>
+            <i>Merchants peddle their cosmic wares... surely there's something for you here.</i>
+            <div id="rotationPolyhedronDiv">
+            <h3>ployhedron rotation</h3>
+            <p><i>The rift brings gifts, in the form of varied polyhedrons. What could be inside?</i></p>
+            <div id="rotationPolyhedronSlot">
 
+            </div>
         </div>
+        </div>
+
+        <div id="gatewayDiv">
+            <h1>Gateway</h1>
+            <i>A remnant of the past, or maybe of the future...? It seems to connect to everything...</i>
+        </div>
+        <div id="latticeDiv">
+            <h1>The lattice</h1>
+            <i>The lattice connects all that was, and all that will be. Journey Beyond.</i>
+        </div>
+        <br>
+        <br>
+        <br>
         <button class="backHome">Back</button>
     </div>
 

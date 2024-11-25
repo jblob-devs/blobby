@@ -1,12 +1,13 @@
-#toShop, #toInventory, #openAdventureTab, #clearSave {
+#toRift, #toInventory, #openAdventureTab, #clearSave {
     position: absolute;
-    left: 3vw;
+   left: 0vw;
 }
 
-#toShop { top: 40vh; }  /* increased from 35vh */
-#openAdventureTab { top: 47vh; }  /* increased from 40vh */
-#toInventory { top: 54vh; }  /* increased from 45vh */
-#clearSave { top: 61vh; }  /* increased from 55vh */
+#openSideBarButton{top: 0vh}
+#toRift { top: 15vh; }  /* increased from 35vh */
+#openAdventureTab { top: 20vh; }  /* increased from 40vh */
+#toInventory { top: 25vh; }  /* increased from 45vh */
+#clearSave { top: 30vh; }  /* increased from 55vh */
 
 #stats {
     position: absolute;
@@ -31,7 +32,7 @@
 #basicBlobDisplayDiv { left: -5vw; }
 #enemyDisplayDiv { right: -20vw; }
 
-#squadSideBar {
+#NavSideBar {
     position: absolute;
     top: 25vh;  /* increased from 20vh */
     left: 3vw;
