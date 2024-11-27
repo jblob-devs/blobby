@@ -92,9 +92,15 @@ $("#closeSideBarButton").on("click",function(){
 
 //back home
 $(".backHome").on("click",function(){
-    $('div').filter(':visible').hide();
+    $("#riftDiv").hide()
+    $("#blobbyCharacterScreen").hide()
+    $("#inventoryDiv").hide()
+    $("#blobbitsDiv").hide()
+    $("#AdventureSelectScreen").hide()
+    $("#locationAdventureSelect").hide()
 
     $("#playscreen").slideDown()
+    $("#idleScreen").show()
 
 })
 

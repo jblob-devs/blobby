@@ -103,7 +103,8 @@ let gameData = {
    curQuest: null,
 
    refreshtimer: 10,
-    polyhedronOfferName: 'plain polyhedron'
+    polyhedronOfferName: 'plain polyhedron',
+    openGatewayArray: ['salvage'],
    
 }
 

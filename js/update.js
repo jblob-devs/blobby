@@ -121,7 +121,7 @@ const statsUpdateLoop = setInterval(function(){
     }else{
         $("#currentObjective").hide()
     }
-    })
+    },1000)
 
     const updateInventory = setInterval(function(){
     $("#frayedTreasureBagCount").html("Frayed Treasure Bags: " + frayedTreasureBag)
@@ -241,3 +241,41 @@ function rotatePolyhedronOffer(){
     return name
 }
     
+let gatewayData = {
+    'salvage': {
+        title: 'Salvage',
+        description: 'Activate a random gateway potentially containing rare curios.',
+        rewards:[new reward('materials.salvageShards',3), new reward(curios.mossyStone,1),new reward(curios.heavyStone,1),new reward(curios.fluxFlower,1)],
+        probabilities:[70,10,10,10],
+        cost: {item: 'jelly', amount: 50}
+    }
+}
+
+
+const updateGateways = setInterval(function(){
+    $("#openGatewaysList").html("")
+    for(let i = 0; i < openGatewayArray.length;i++){
+        let gatedetails = gatewayData[openGatewayArray[i]] 
+        $("#openGatewaysList").append(`<button class='opengatewaybuttons' id='navigate${openGatewayArray[i]}gateway'>${gatedetails.title}</button>`)
+        $(`#navigate${openGatewayArray[i]}gateway`).css('top', (i+1) *5 + 'vh')
+    $(`#navigate${openGatewayArray[i]}gateway`).on('click',function(){
+            $("#gatewayInfoDiv").html(`<h2>${gatedetails.title}</h2><br><p><i>${gatedetails.description}</i></p><br><button id="use${openGatewayArray[i]}gateway">${gatedetails.cost.amount} ${gatedetails.cost.item}</button>`)
+    })
+    $(`#use${openGatewayArray[i]}gateway`).on('click',function(){
+        if(eval(gatedetails.cost.item) >= gatedetails.cost.amount){
+            eval(gatedetails.cost.item -= gatedetails.cost.amount) 
+            let randnum = randNum(1,100)
+            let recur = gatedetails.probabilities[0]
+            let rewardgranted;
+            for(let i = 0; i < gatedetails.probabilities.length; i++){
+                if(randnum <= recur){
+                    rewardgranted = gatedetails.rewards[i]
+                }else{
+                    recur += gatedetails.probabilities[i+1]
+                }
+            }
+            addReward(rewardgranted.name, rewardgranted.amount, true)
+        }
+    })
+}
+},1000)
