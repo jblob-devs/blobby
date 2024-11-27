@@ -255,15 +255,17 @@ let gatewayData = {
 const updateGateways = setInterval(function(){
     $("#openGatewaysList").html("")
     for(let i = 0; i < openGatewayArray.length;i++){
-        let gatedetails = gatewayData[openGatewayArray[i]] 
+        let gatedetails = gatewayData[openGatewayArray[i]]
         $("#openGatewaysList").append(`<button class='opengatewaybuttons' id='navigate${openGatewayArray[i]}gateway'>${gatedetails.title}</button>`)
         $(`#navigate${openGatewayArray[i]}gateway`).css('top', (i+1) *5 + 'vh')
     $(`#navigate${openGatewayArray[i]}gateway`).on('click',function(){
-            $("#gatewayInfoDiv").html(`<h2>${gatedetails.title}</h2><br><p><i>${gatedetails.description}</i></p><br><button id="use${openGatewayArray[i]}gateway">${gatedetails.cost.amount} ${gatedetails.cost.item}</button>`)
+            $("#gatewayInfoDiv").html(`<h2>${gatedetails.title}</h2><br><p><i>${gatedetails.description}</i></p><br><button id="use${openGatewayArray[i]}gateway">${gatedetails.cost.amount} ${gatedetails.cost.item} <br> <p id="owned${openGatewayArray[i]}gatewayitem"></p></button>`)
     })
     $(`#use${openGatewayArray[i]}gateway`).on('click',function(){
-        if(eval(gatedetails.cost.item) >= gatedetails.cost.amount){
-            eval(gatedetails.cost.item -= gatedetails.cost.amount) 
+        console.log(gameData[gatedetails.cost.item])
+        if(gameData[gatedetails.cost.item] >= gatedetails.cost.amount){
+            gameData[gatedetails.cost.item] -= gatedetails.cost.amount
+            console.log(jelly)
             let randnum = randNum(1,100)
             let recur = gatedetails.probabilities[0]
             let rewardgranted;
@@ -277,5 +279,6 @@ const updateGateways = setInterval(function(){
             addReward(rewardgranted.name, rewardgranted.amount, true)
         }
     })
+    $(`#owned${openGatewayArray[i]}gatewayitem`).html(`<i>Owned: ${gameData[gatedetails.cost.item]}</i>`)
 }
 },1000)
