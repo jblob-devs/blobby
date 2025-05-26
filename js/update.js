@@ -184,13 +184,26 @@ const statsUpdateLoop = setInterval(function(){
             parent.innerHTML = ''
             let name = questsArr[i]
             let nospacename = name.replace(/\s+/g,"")
-                if($(`#AVAILABLEQUEST${nospacename}Div`).length == 0 && !questsArr[i].completed){
+                if($(`#AVAILABLEQUEST${nospacename}Div`).length == 0 && !quest[questsArr[i]].completed){
+                    
+                    if(quest[questsArr[i]].missionAttached){
                     div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}<i></p><button id= "${nospacename}launchMission">Launch</button></div>`)
+                    }else{
+                      div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}: ${quest[questsArr[i]].launchtext}<i></p><button id="${nospacename}claimQuestRewards">Claim Rewards</button></div>`)  
+                    }
+                    
                     div.find(`#${nospacename}launchMission`).click((function (questname) {
                         return function () {
                            quest[questname].launchMission();
                         };
                     })(questsArr[i]));
+                    div.find(`#${nospacename}claimQuestRewards`).click((function (questname) {
+                        return function () {
+                           
+                        };
+                    })(questsArr[i]));
+
+                    
                     parent.append(div)
                 }
              
@@ -247,7 +260,7 @@ let gatewayData = {
         description: 'Activate a random gateway potentially containing rare curios.',
         rewards:[new reward('materials.salvageShards',3), new reward(curios.mossyStone,1),new reward(curios.heavyStone,1),new reward(curios.fluxFlower,1)],
         probabilities:[70,10,10,10],
-        cost: {item: 'jelly', amount: 50}
+        cost: {item: 'materials.salvageShards', amount: 50}
     }
 }
 
@@ -279,6 +292,6 @@ const updateGateways = setInterval(function(){
             addReward(rewardgranted.name, rewardgranted.amount, true)
         }
     })
-    $(`#owned${openGatewayArray[i]}gatewayitem`).html(`<i>Owned: ${gameData[gatedetails.cost.item]}</i>`)
+    $(`#owned${openGatewayArray[i]}gatewayitem`).html(`<i>Owned: ${displayNames[gameData[gatedetails.cost.item]]}</i>`)
 }
 },1000)

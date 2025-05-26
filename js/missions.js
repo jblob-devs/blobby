@@ -6,9 +6,9 @@ class Quest{
        this.missionAttached = missionAttached;
        this.completed = false;
        this.enemy = null;
-       this.launchtext = launchtext
-       this.completiontext = completiontext
-       this.missionEnemies = missionEnemies
+       this.launchtext = launchtext || ""
+       this.completiontext = completiontext || ""
+       this.missionEnemies = missionEnemies || []
        this.rewards = rewards;
 
     }
@@ -29,6 +29,10 @@ class Quest{
                 timer: 5000
               });
         }
+        
+    }
+
+    checkCompletion(){
         
     }
 

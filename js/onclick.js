@@ -100,7 +100,10 @@ $(".backHome").on("click",function(){
     $("#locationAdventureSelect").hide()
 
     $("#playscreen").slideDown()
+    if(!battleActive){
     $("#idleScreen").show()
+    }
+  
 
 })
 
@@ -210,6 +213,7 @@ function applyCuriosConfig(curiosArray){
 }
 
 function loadCurios(){
+     $("#listOfCurios").empty()
     for(let i =0; i < UnlockedCuriosList.length; i++){
         
 

@@ -140,6 +140,9 @@ if(name == "Sun Plains"){
     preBattlePrep()
     createNewRound()
     currentObjective = "Explore and clear rounds for rewards! <br> Extraction is unlocked after round 5!"
+    if(!gameData[locationStats["SlimyWoods"].unlocked]){
+        questsArr.push("UnlockSlimeWoods")
+    }
 }else if(name == "Slimy Woods"){
 
 }
