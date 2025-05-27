@@ -279,7 +279,7 @@ const updateGateways = setInterval(function(){
         $("#openGatewaysList").append(`<button class='opengatewaybuttons' id='navigate${openGatewayArray[i]}gateway'>${gatedetails.title}</button>`)
         $(`#navigate${openGatewayArray[i]}gateway`).css('top', (i+1) *5 + 'vh')
     $(`#navigate${openGatewayArray[i]}gateway`).on('click',function(){
-            $("#gatewayInfoDiv").html(`<h2>${gatedetails.title}</h2><br><p><i>${gatedetails.description}</i></p><br><button id="use${openGatewayArray[i]}gateway">${gatedetails.cost.amount} ${gatedetails.cost.item} <br> <p id="owned${openGatewayArray[i]}gatewayitem"></p></button>`)
+            $("#gatewayInfoDiv").html(`<h2>${gatedetails.title}</h2><br><p><i>${gatedetails.description}</i></p><br><button id="use${openGatewayArray[i]}gateway">${gatedetails.cost.amount} ${displayNames[gatedetails.cost.item]} <br> <p id="owned${openGatewayArray[i]}gatewayitem"></p></button>`)
     })
     $(`#use${openGatewayArray[i]}gateway`).on('click',function(){
         console.log(gameData[gatedetails.cost.item])
@@ -296,9 +296,11 @@ const updateGateways = setInterval(function(){
                     recur += gatedetails.probabilities[i+1]
                 }
             }
-            addReward(rewardgranted.name, rewardgranted.amount, true)
+            addReward(rewardgranted.name, rewrdgranted.amount, true)
         }
     })
-    $(`#owned${openGatewayArray[i]}gatewayitem`).html(`<i>Owned: ${displayNames[gameData[gatedetails.cost.item]]}</i>`)
+    let displayitem = gatedetails.cost.item
+    let item = displayitem.split('.').reduce((o, k) => o?.[k], gameData) || 0
+    $(`#owned${openGatewayArray[i]}gatewayitem`).html(`<i>Owned: ${item}</i>`)
 }
 },1000)
