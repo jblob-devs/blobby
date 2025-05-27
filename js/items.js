@@ -170,9 +170,13 @@ function whatIsThis(item){
 
 
 function calculateEndAdventureRewards(location,round){
+    console.log(location)
+    console.log(locationStats[location])
+    locationStats[location].maxRound = round;
+    console.log(maxRound)
     let roundmarker = round - round % 5
     let jellyearned = 10 * round;
- if(location == "Sun Plains"){
+ if(displayNames[location] == "Sun Plains"){
     var sunpetalsamounts;
     if(roundmarker >= 20){
        sunpetalsamounts = randNum(10,15)
@@ -184,7 +188,7 @@ function calculateEndAdventureRewards(location,round){
         sunpetalsamounts = randNum(3,5)
     }
     Swal.fire({
-        title: `${location} adventure complete!`,
+        title: `${displayNames[location]} adventure complete!`,
         html:
         `<b>Rewards:</b> <br>
         <i>

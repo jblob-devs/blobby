@@ -135,13 +135,12 @@ function loadLocation(name){
 battleLocation = name
 $("#AdventureSelectScreen").hide()
 $("#battleDiv").show();
-if(name == "Sun Plains"){
-    battleLocation = "Sun Plains"
+if(displayNames[name] == "Sun Plains"){
     preBattlePrep()
     createNewRound()
     currentObjective = "Explore and clear rounds for rewards! <br> Extraction is unlocked after round 5!"
     if(!gameData[locationStats["SlimyWoods"].unlocked]){
-        questsArr.push("UnlockSlimeWoods")
+        questsArr.push("UnlockSlimyWoods")
     }
 }else if(name == "Slimy Woods"){
 

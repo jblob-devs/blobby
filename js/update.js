@@ -109,7 +109,7 @@ const statsUpdateLoop = setInterval(function(){
             googaugetext.textContent = blobby.gooGauge + " goo";
         }
     },100)
-
+    
     const updateObjective = setInterval(function(){
     if(battleActive){
         $("#currentObjective").show()
@@ -161,6 +161,7 @@ const statsUpdateLoop = setInterval(function(){
     }
 
     },100)
+
     const updateAdventure = setInterval(function(){
         for(let i = 0; i < Object.keys(locationStats).length; i++){
             let div;
@@ -169,7 +170,7 @@ const statsUpdateLoop = setInterval(function(){
             let unlocked = Object.entries(locationStats)[i][1].unlocked
             if(unlocked){
                 if(!document.getElementById(`to${name}Div`)){
-                    div = $(`<div class="toLocationDiv" id="to${name}Div"><p>${displayNames[name]}</p><button onclick="loadLocation('${displayNames[name]}')">Enter</button></div>`)
+                    div = $(`<div class="toLocationDiv" id="to${name}Div"><p>${displayNames[name]}</p><button onclick="loadLocation('${name}')">Enter</button></div>`)
                     parent.append(div)
                 }
             }
@@ -181,15 +182,19 @@ const statsUpdateLoop = setInterval(function(){
         for(let i = 0; i < questsArr.length; i++){
             let div;
             let parent = $("#questMissionSelect")
-            parent.innerHTML = ''
             let name = questsArr[i]
+            
             let nospacename = name.replace(/\s+/g,"")
-                if($(`#AVAILABLEQUEST${nospacename}Div`).length == 0 && !quest[questsArr[i]].completed){
+                if($(`#AVAILABLEQUEST${nospacename}Div`).length == 0 && !(quest[name].completed)){
                     
                     if(quest[questsArr[i]].missionAttached){
                     div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}<i></p><button id= "${nospacename}launchMission">Launch</button></div>`)
                     }else{
-                      div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}: ${quest[questsArr[i]].launchtext}<i></p><button id="${nospacename}claimQuestRewards">Claim Rewards</button></div>`)  
+                        if(quest[questsArr[i]].completed){
+                            div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}: ${quest[questsArr[i]].launchtext}<i></p><button id="${nospacename}claimQuestRewards">Claim Rewards</button></div>`)  
+                    }else{
+                      div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}: ${quest[questsArr[i]].launchtext}<i></p> <p>Not Completed Yet</p></div>`)  
+                    }
                     }
                     
                     div.find(`#${nospacename}launchMission`).click((function (questname) {
@@ -197,15 +202,17 @@ const statsUpdateLoop = setInterval(function(){
                            quest[questname].launchMission();
                         };
                     })(questsArr[i]));
+
                     div.find(`#${nospacename}claimQuestRewards`).click((function (questname) {
-                        return function () {
-                           
-                        };
-                    })(questsArr[i]));
+                        
+                    }));
 
                     
                     parent.append(div)
                 }
+
+                
+
              
         }
 
