@@ -152,3 +152,28 @@ class reward{
         this.amount = amount;
     }
 }
+
+
+//for accessing paths of objects or something
+//root should always be gameData
+function setDeepValue(root, pathString, value) {
+  const parts = pathString.split('.');
+  let obj = root;
+
+  for (let i = 0; i < parts.length - 1; i++) {
+    if (obj[parts[i]] === undefined) {
+      console.warn(`Path not found: ${parts.slice(0, i + 1).join('.')}`);
+      return false;
+    }
+    obj = obj[parts[i]];
+  }
+
+  const lastPart = parts[parts.length - 1];
+  if (obj.hasOwnProperty(lastPart)) {
+    obj[lastPart] = value;
+    return true;
+  } else {
+    console.warn(`Property not found: ${pathString}`);
+    return false;
+  }
+}

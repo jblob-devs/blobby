@@ -22,7 +22,7 @@ const displayNames ={
     blobby: "Blobby",
     slimeBlob: "Slime Blob",
     "SunPlains": "Sun Plains",
-    "SlimyWood": "Slimy Woods",
+    "SlimyWoods": "Slimy Woods",
     'materials.sunPetals': "Sun petals",
     'blobBits.blobby': 'Blobby blob bits',
     'blobBits.slimeBlob': 'Slime blob bits'
@@ -455,6 +455,8 @@ function createRandomBossReward(){
     }
     
 }
+
+
 //in a document.ready so the function only runs once all elements are loaded
 $( document ).ready(function() {
     welcome()

@@ -185,27 +185,43 @@ const statsUpdateLoop = setInterval(function(){
             let name = questsArr[i]
             
             let nospacename = name.replace(/\s+/g,"")
+
                 if($(`#AVAILABLEQUEST${nospacename}Div`).length == 0 && !(quest[name].completed)){
                     
                     if(quest[questsArr[i]].missionAttached){
                     div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}<i></p><button id= "${nospacename}launchMission">Launch</button></div>`)
                     }else{
-                        if(quest[questsArr[i]].completed){
+                        if(quest[name].check()){
+                            quest[name].completednotclaimed = true;
+                            
+                        }
+                        if(quest[questsArr[i]].completednotclaimed){
                             div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}: ${quest[questsArr[i]].launchtext}<i></p><button id="${nospacename}claimQuestRewards">Claim Rewards</button></div>`)  
                     }else{
                       div = $(`<div class="questBlockDiv" id="AVAILABLEQUEST${nospacename}Div"><p>${quest[questsArr[i]].name}</p><p><i>${quest[questsArr[i]].description}: ${quest[questsArr[i]].launchtext}<i></p> <p>Not Completed Yet</p></div>`)  
                     }
+
                     }
                     
                     div.find(`#${nospacename}launchMission`).click((function (questname) {
                         return function () {
                            quest[questname].launchMission();
                         };
+
+                    
                     })(questsArr[i]));
 
-                    div.find(`#${nospacename}claimQuestRewards`).click((function (questname) {
-                        
-                    }));
+                    div.find(`#${nospacename}claimQuestRewards`).click((function(questname){
+                        return function () {
+                           quest[questname].grantRewards();
+                           quest[questname].completed = true;
+                            questsArr.splice(i, 1)
+                            $(`#AVAILABLEQUEST${nospacename}Div`).remove()
+                
+                        };             
+
+                    })(questsArr[i]))
+                 
 
                     
                     parent.append(div)

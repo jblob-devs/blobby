@@ -111,6 +111,6 @@ let gameData = {
 
 let quest={
     UnlockCurios: new Quest("Unlock Curios", "Unlock the ability to use strange artifacts",true,"A powered up Culled has been roaming this area ... scare it off." ,"The corrupted dropped some sort of artifact ... maybe it can be used to make Blobby stronger?", new reward(curios.smoothStone,1), [new Enemy("Warped",3), new Enemy("Warped",3), new Enemy("Warped",4), new Enemy("Corrupted",5)]),
-    UnlockBlobs: new Quest("Unlock Blobs", "Recruit Blobs to assist and powerup Blobby!",true,"Fragments of blobs, similar to blobby, are being guarded by the Culled. Retrieve them!","Continue collected blob bits to recruit new blobs for your squad!", new reward('blobBits.slimeBlob',10), [new Enemy("Warped",5), new Enemy("Warped",3),new Enemy("Corrupted",6)]),
-    UnlockSlimyWoods: Object.assign (new Quest("Unlock Slimy Woods", "Venture the Slimy Woods",false,"Clear wave 10 in the sun plains", new reward('locationStats.SlimyWoods.unlocked',true)), {check:function(){return gameData[locationStats.SunPlains.maxRound] >= 10}})
+    UnlockBlobs: new Quest("Unlock Blobs", "Recruit Blobs to assist and powerup Blobby!",true,"Fragments of blobs, similar to blobby, are being guarded by the Culled. Retrieve them!","Continue collecting blob bits to recruit new blobs for your squad!", new reward('blobBits.slimeBlob',10), [new Enemy("Warped",5), new Enemy("Warped",3),new Enemy("Corrupted",6)]),
+    UnlockSlimyWoods: Object.assign (new Quest("Unlock Slimy Woods", "Venture the Slimy Woods",false,"Clear wave 10 in the sun plains", "", new reward('locationStats.SlimyWoods.unlocked',true)), {check:function(){return gameData.locationStats.SunPlains.maxRound >= 10}})
 }

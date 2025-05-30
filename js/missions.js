@@ -6,6 +6,8 @@ class Quest{
        this.missionAttached = missionAttached;
        this.completed = false;
        this.enemy = null;
+       //completednotclaimed property is only for quests that dont have a mission attached.
+       this.completednotclaimed = false;
        this.launchtext = launchtext || ""
        this.completiontext = completiontext || ""
        this.missionEnemies = missionEnemies || []

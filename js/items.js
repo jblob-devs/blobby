@@ -31,6 +31,9 @@ function addReward(type,amount,alert){
         materials.salvageShards += 10
     }
     }else{
+        if(amount == true || amount == false){
+            setDeepValue(gameData, type, amount)
+        }
         addRewardArray(type, amount)
         let out = sendRewardArray()
         if(alert){
